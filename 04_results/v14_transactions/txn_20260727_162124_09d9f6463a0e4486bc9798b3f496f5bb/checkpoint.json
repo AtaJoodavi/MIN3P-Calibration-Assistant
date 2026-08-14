@@ -1,0 +1,62 @@
+{
+  "canonical_hashes": {
+    "best_config": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx",
+    "best_exists": true,
+    "best_sha256": "FC5325E7A796E44315175B824E4676D1902120A826F752499BCDC20C18167F8C",
+    "canonical_config": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx",
+    "canonical_exists": true,
+    "canonical_sha256": "FC5325E7A796E44315175B824E4676D1902120A826F752499BCDC20C18167F8C",
+    "match": true
+  },
+  "checkpoint_id": "4a190a22a15d4feaa09bc9f8f25861be",
+  "created_at": "2026-07-27T16:21:18+03:00",
+  "optimizer_version": "V14.4.6",
+  "promoted_to_transaction_at": "2026-07-27T16:21:24+03:00",
+  "schema_version": 1,
+  "state_files": [
+    {
+      "existed_before_selection": true,
+      "name": "v14_campaign_state.json",
+      "sha256": "B3902644AE3E8598D47D0CE754451B617AAC076F699DD31F3C83DF8B9D533FFF",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_campaign_state.json",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_campaign_state.json"
+    },
+    {
+      "existed_before_selection": true,
+      "name": "v14_interaction_runtime_state.json",
+      "sha256": "4EFA9946AC611EF1CC1E8B7DDB9A10240C08E8A08E5624DF83250EAAE8198122",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_interaction_runtime_state.json",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_interaction_runtime_state.json"
+    },
+    {
+      "existed_before_selection": true,
+      "name": "v14_optimizer_parameter_state.xlsx",
+      "sha256": "E15E33EF8ADF2C17A04A34B1FAE846ECC7D12F6D99E51BE39CD839872B462373",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_optimizer_parameter_state.xlsx",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_parameter_state.xlsx"
+    },
+    {
+      "existed_before_selection": true,
+      "name": "v14_optimizer_state.xlsx",
+      "sha256": "A8347222F8918FCF8C9DFB2066F8795E16125C5D155EFA09304C0264D7EA6023",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_optimizer_state.xlsx",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_state.xlsx"
+    },
+    {
+      "existed_before_selection": true,
+      "name": "v14_parameter_runtime_state.json",
+      "sha256": "4001F44E67AC943973877693CD4926D149AB5BF56A0172538B1AD91B25130D4D",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_parameter_runtime_state.json",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_parameter_runtime_state.json"
+    },
+    {
+      "existed_before_selection": true,
+      "name": "v14_step_size_state.json",
+      "sha256": "2489D4CD84C10FD8A9C7F2599BA73E55E158C36570B68BBC9FD8950F792A03D7",
+      "snapshot": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\_selection_checkpoints\\checkpoint_4a190a22a15d4feaa09bc9f8f25861be\\optimizer_state_before_selection\\v14_step_size_state.json",
+      "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_step_size_state.json"
+    }
+  ],
+  "status": "checkpoint_created",
+  "transaction_root": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260727_162124_09d9f6463a0e4486bc9798b3f496f5bb"
+}

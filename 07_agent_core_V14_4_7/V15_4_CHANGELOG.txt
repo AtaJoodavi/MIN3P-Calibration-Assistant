@@ -1,0 +1,24 @@
+V15.4 campaign reviewer
+
+Modified:
+- generate_v15_scientific_report.py
+- modules/scientific_reporting_V15.py
+- README.md
+
+Added:
+- modules/campaign_review_V15_4.py
+- generate_v15_campaign_analysis.py
+- generate_v15_gpt_campaign_review.py
+- config/gpt_campaign_review_V15_4.yaml
+- tests/test_v15_4_campaign_review.py
+- verify_v15_4_campaign_review.py
+- V15_4_CAMPAIGN_REVIEW.md
+
+Main capabilities:
+- deterministic campaign-wide statistics from optimization_history.xlsx and calibration_decision_log.xlsx
+- run-health, objective, closest-candidate, step-size, search-space, species-bias, trade-off, and stagnation summaries
+- strict OpenAI Responses API Structured Output schema
+- deterministic fallback when GPT is disabled or unavailable
+- campaign review embedded in the existing V15 HTML and Markdown reports
+- separate JSON, Excel, Markdown, and manifest artifacts
+- read-only integrity protection for V14 campaign state

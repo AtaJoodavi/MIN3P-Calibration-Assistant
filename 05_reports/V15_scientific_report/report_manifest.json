@@ -1,0 +1,68 @@
+{
+  "reporter_version": "V15.4.2",
+  "generated_at": "2026-08-03T14:33:19+03:00",
+  "mode": "read_only_reporting",
+  "project_dir": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3",
+  "agent_core_dir": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\07_agent_core_V14_4_7",
+  "decision_log_source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\calibration_decision_log.xlsx",
+  "candidate_trial_count": 282,
+  "pH_SO4_metrics": {
+    "available": false,
+    "source": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\calibration_decision_log.xlsx",
+    "pH_effect_column": null,
+    "SO4_effect_column": null,
+    "metric_kind": "not_available"
+  },
+  "campaign_review": {
+    "requested_mode": "auto",
+    "used_mode": "gpt + V15.4.1 deterministic correction",
+    "status": "success",
+    "analysis_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_analysis_V15_4.json",
+    "review_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_review_V15_4.json"
+  },
+  "conceptual_model": {
+    "dat_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\HCT3.dat",
+    "dat_sha256": "f4d5bbd832d6e740c75283822e9a3e63ee202e398c19c40a321b74621c58e42b",
+    "conceptual_image_mode": "deterministic",
+    "conceptual_detail": "paper",
+    "facts_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_facts.json",
+    "generation_manifest": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_generation_manifest.json"
+  },
+  "protected_hashes_before": {
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_state.xlsx": "12e82f0e209443c05dbb60a3d64ebc92a3e0c3d259f9f1476249ac110658e843",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_parameter_state.xlsx": "7f4f7356d3e7dc2637f4e8d4b089452e3c8feec8709046fb5e1599f6be01c7bc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_parameter_runtime_state.json": "099a0f5e5113b68893cdd0c7d3d517581d3a02b9d15a49c5094a009ec0c3a00f",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_step_size_state.json": "4d843d57855b10419d2449b6a38fb3a86505f13c2014132a1f1824da65023ebf"
+  },
+  "protected_hashes_after": {
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_state.xlsx": "12e82f0e209443c05dbb60a3d64ebc92a3e0c3d259f9f1476249ac110658e843",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_parameter_state.xlsx": "7f4f7356d3e7dc2637f4e8d4b089452e3c8feec8709046fb5e1599f6be01c7bc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_parameter_runtime_state.json": "099a0f5e5113b68893cdd0c7d3d517581d3a02b9d15a49c5094a009ec0c3a00f",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_step_size_state.json": "4d843d57855b10419d2449b6a38fb3a86505f13c2014132a1f1824da65023ebf"
+  },
+  "protected_campaign_hashes_unchanged": true,
+  "artifacts": {
+    "conceptual_svg": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_hydrogeochemical_model.svg",
+    "conceptual_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_hydrogeochemical_model.png",
+    "conceptual_facts": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_facts.json",
+    "conceptual_prompt": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_prompt.txt",
+    "conceptual_generation_manifest": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_generation_manifest.json",
+    "conceptual_draft_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_model_deterministic_draft.png",
+    "timeline_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\02_calibration_decision_timeline.png",
+    "sensitivity_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\05_parameter_sensitivity_summary.png",
+    "trial_table": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\tables\\parameter_trial_effects.xlsx",
+    "metrics_table": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\tables\\pH_SO4_response_metrics.xlsx",
+    "sensitivity_table": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\tables\\parameter_sensitivity_and_calibration_evidence.xlsx",
+    "group_table": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\tables\\calibration_group_overview.xlsx",
+    "campaign_analysis_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_analysis_V15_4.json",
+    "campaign_analysis_xlsx": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_analysis_V15_4.xlsx",
+    "campaign_review_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_review_V15_4.json",
+    "campaign_review_markdown": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_review_V15_4.md",
+    "campaign_review_manifest": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\campaign_review_manifest_V15_4.json"
+  },
+  "warnings": []
+}

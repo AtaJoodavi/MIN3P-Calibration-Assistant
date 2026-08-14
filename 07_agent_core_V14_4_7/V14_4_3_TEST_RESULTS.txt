@@ -1,0 +1,23 @@
+V14.4.3 validation
+==================
+
+Targeted V14.4.3 + V14.4 range/refinement tests:
+  20 passed
+
+Full V14 regression suite (tests/test_v14*.py):
+  61 passed
+  2 subtests passed
+  0 failures
+
+Full mixed V14/V15 suite:
+  72 passed
+  2 subtests passed
+  4 failures
+
+The four full-suite failures are pre-existing V15 reporting/test mismatches unrelated to the V14.4.3 calibration engine:
+- reporter-version assertions expecting V15.2.1 while package reporter is V15.4.2 (2 tests)
+- conceptual-model label expectation '1D vertical' vs current '1D vertical column' (1 test)
+- V15 scientific-reporting artifact path None in an existing report test (1 test)
+
+Deterministic smoke test:
+  verify_v14_4_3_initial_scales.py -> PASS

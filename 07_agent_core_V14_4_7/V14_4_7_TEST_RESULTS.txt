@@ -1,0 +1,17 @@
+V14.4.7 validation
+==================
+
+Dedicated V14.4.7 CLI/audit tests:
+  6 passed
+
+Complete V14 regression suite:
+  80 passed
+  2 subtests passed
+  0 V14 failures
+
+Complete mixed test suite:
+  91 passed
+  2 subtests passed
+  4 pre-existing V15 reporting-test failures
+
+The V15 failures are unchanged from V14.4.6 and are unrelated to V14.4.7.

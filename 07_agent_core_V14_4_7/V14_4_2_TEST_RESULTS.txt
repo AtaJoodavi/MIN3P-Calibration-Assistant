@@ -1,0 +1,27 @@
+V14.4.2 validation
+Date: 2026-07-27
+
+V14 regression suite:
+54 passed
+2 subtests passed
+0 failures
+
+Coverage includes:
+- directional-pair safety
+- stage-wide global step ordering
+- V14.4.2 protected local-refinement priority
+- V14.4.1 migration into protected refinement
+- local-futility behavior
+- interaction-pair safety
+- transaction/recovery behavior
+- exact candidate cache
+- range-normalized linear/log stepping
+- GPT advisory precedence
+- optimizer state audit metadata
+
+Full repository suite:
+65 passed
+2 subtests passed
+4 failures
+
+The four failures are pre-existing V15 reporting/version-test mismatches and are not caused by V14.4.2.

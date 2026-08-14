@@ -1,0 +1,23 @@
+V14.4.4 validation
+==================
+
+V14 regression suite:
+  64 passed
+  2 subtests passed
+  0 V14 failures
+
+Full mixed V14/V15 suite:
+  75 passed
+  2 subtests passed
+  4 pre-existing V15 reporting/test failures
+
+The four full-suite failures are unrelated to the V14.4.4 calibration engine:
+- two reporter-version expectation mismatches (tests expect V15.2.1, package reports V15.4.2);
+- one conceptual-model label expectation mismatch ("1D vertical" vs "1D vertical column");
+- one V15 reporting artifact-path test where an optional output is None.
+
+V14.4.4 smoke test confirms:
+- six-decade keff_pyrite -> automatic x10 / divide-by-10;
+- narrow Kz range -> automatic factor about x1.021897882;
+- bottom_head [-0.3, 0] -> 5% bounded-linear span;
+- zero lower bound for logarithmic search -> safe global fallback x1.05.

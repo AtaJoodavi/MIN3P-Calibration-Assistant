@@ -1,0 +1,94 @@
+'global control parameters'
+'HCT2 test'
+.true.
+'done'
+'spatial discretization'
+1 ;number of discretization intervals in x
+1 ;number of control volumes in x
+0 1 ;xmin,xmax
+1 ;number of discretization intervals in y
+1 ;number of control volumes in y
+0 1 ;ymin,ymax
+1 ;number of discretization intervals in z
+41 ;number of control volumes in z
+0 0.1 ;zmin,zmax
+'done'
+'geochemical system'
+'components'
+2
+'o2(aq)'
+'so4-2'
+'non-aqueous components'
+2
+'=feoh(s)' 'surface'
+'=feoh(w)' 'surface'
+'gases'
+2
+'o2(g)'
+'co2(g)'
+'minerals'
+4
+'pyrite-par'
+'calcite-ch'
+'jarositek'
+'magnesite'
+'define sorption type'
+'sorbed species'
+1
+'=feozn+(s)'
+'redox couples'
+1
+'so4-2' 'hs-1'
+'done'
+'physical parameters - porous medium'
+1 ;number of property zones
+'number and name of zone'
+1
+'fullArea'
+0.4 ;porosity
+'extent of zone'
+0 1 0 1 0 0.1
+'end of zone'
+'done'
+'initial condition - reactive transport'
+'mineral input'
+0.01 .true. 'twothird' ;phi, min_equ, type - pyrite-par
+0.02 .true. 'twothird' ;phi, min_equ, type - calcite-ch
+1.d-10 .true. 'constant' ;phi, min_equ, type - jarositek
+0.01 .true. 'twothird' ;phi, min_equ, type - magnesite
+'extent of zone'
+'done'
+'boundary conditions - variably saturated flow'
+'number and name of zone'
+1
+'Top'
+'boundary type'
+'second' 1e-07
+'end of zone'
+'number and name of zone'
+2
+'Bottom'
+'boundary type'
+'first' -0.28875
+'end of zone'
+'done'
+'boundary conditions - reactive transport'
+'number and name of zone'
+1
+'Top'
+'boundary type'
+'mixed'
+'concentration input'
+0.21 'po2'
+5.6 'ph'
+0.00039 'pco2'
+'guess for ph'
+7.0
+'end of zone'
+'number and name of zone'
+2
+'Bottom'
+'boundary type'
+'second'
+'end of zone'
+'done'

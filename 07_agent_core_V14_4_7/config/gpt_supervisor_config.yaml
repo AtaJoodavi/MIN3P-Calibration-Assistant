@@ -1,0 +1,11 @@
+# GPT is deliberately disabled until deterministic V14 smoke tests pass.
+enabled: false
+model: gpt-5.6-luna
+reasoning_effort: low
+max_output_tokens: 1200
+valid_run_interval: 4
+call_on_new_best: true
+call_on_repeated_failures: true
+call_on_group_transition: true
+call_on_numerical_warning: true
+call_on_possible_stop: true

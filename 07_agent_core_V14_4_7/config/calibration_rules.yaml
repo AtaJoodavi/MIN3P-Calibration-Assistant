@@ -1,0 +1,30 @@
+# V14 deterministic defaults. Values in agent_config.xlsx / optimizer_v13 keep
+# backward-compatible precedence where supported by the V14 modules.
+initial_step_fraction: 0.05
+minimum_step_fraction: 0.005
+maximum_step_fraction: 0.20
+step_growth_factor: 1.5
+step_shrink_factor: 0.5
+growth_after_accepted_streak: 2
+reactivation_valid_run_interval: 4
+exhausted_cooldown_valid_runs: 4
+
+# V14.4 search-space scaling. For logarithmic parameters with explicit positive
+# min/max bounds, step_fraction is a fraction of the configured log10 range.
+# Example: min=1e-6, max=1, step=0.05 -> x2.0 / x0.501 moves.
+# Set false in agent_config.xlsx / optimizer_v13 to restore legacy local
+# multiplicative +/- stepping for logarithmic parameters.
+log_range_step_scaling_enabled: true
+
+# V14.4.4 automatic initial exploration. These are global defaults only; no
+# parameter-specific columns are required in agent_config.xlsx.
+automatic_initial_scales_enabled: true
+automatic_initial_max_factor: 10.0
+automatic_reference_log_decades: 6.0
+
+# V14.4.5 bound/no-op numerical guard. These are intentionally tiny and only
+# suppress configurations that are effectively identical after hard-bound
+# clamping; they are not scientific convergence thresholds.
+candidate_noop_absolute_tolerance: 1.0e-30
+candidate_noop_relative_tolerance: 1.0e-10
+candidate_noop_range_tolerance: 1.0e-12

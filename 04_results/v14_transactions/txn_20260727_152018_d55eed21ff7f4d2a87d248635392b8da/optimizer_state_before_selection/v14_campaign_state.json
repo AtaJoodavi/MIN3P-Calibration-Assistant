@@ -1,0 +1,9 @@
+{
+  "current_best_score": 10.0,
+  "current_best_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260727_151938",
+  "current_best_stage": "baseline",
+  "best_parameters_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx",
+  "baseline_source": "verified_V13_5_best_memory",
+  "updated_at": "2026-07-27T15:20:08+03:00",
+  "optimizer_version": "V14.4.4"
+}

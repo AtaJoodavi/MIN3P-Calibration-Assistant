@@ -1,0 +1,706 @@
+!
+! ============================================================
+! MIN3P CALIBRATION TEMPLATE WITH PLACEHOLDERS
+! Placeholder format: double curly brackets, e.g. parameter_name
+! ============================================================
+!
+
+! Data Block 1: global control parameters
+! --------------------------------------------------
+!
+'global control parameters'
+'Orijärvi HCT'
+.true.				 ;varsat_flow
+.true.				 ;steady_flow
+.false.				 ;fully_saturated
+.true.				 ;reactive_transport
+
+'done'
+!
+! Data Block 2: geochemical system
+! --------------------------------------------------
+!
+'geochemical system'
+
+'use new database format'
+
+'compute alkalinity'
+
+
+
+'define temperature'
+22
+
+'database directory'
+'../../database'
+
+'define input units'
+'mg/l'
+
+'components'
+17				 ;number of components
+'o2(aq)'
+'co3-2'
+'h+1'
+'fe+2'
+'so4-2'
+'zn+2'
+'ca+2'
+'mg+2'
+'cu+2'
+'cd+2'
+'k+1'
+'al+3'
+'h4sio4'
+'na+1'
+'fe+3'
+'pb+2'
+'hs-1'
+
+'non-aqueous components'
+2				 ;number of components
+'=feoh(s)' 'surface'
+'=feoh(w)' 'surface'
+
+'secondary aqueous species'
+90				 ;number of secondary aqueous species
+'khso4(aq)'
+'h2so4(aq)'
+'h2(aq)'
+'cuo2-2'
+'feco3+'
+'oh-'
+'h3sio4-'
+'h2sio4-2'
+'mgoh+'
+'mgco3aq'
+'mghco3+'
+'mgso4aq'
+'caoh+'
+'cahco3+'
+'caco3aq'
+'caso4aq'
+'cahso4+'
+'naco3-'
+'nahco3aq'
+'naso4-'
+'kso4-'
+'aloh+2'
+'al(oh)2+'
+'al(oh)4-'
+'also4+'
+'alhso42+'
+'al(so4)2-'
+'al(oh)3aq'
+'feoh+'
+'feoh3-1'
+'feso4aq'
+'fehso4+'
+'fehco3+'
+'feco3aq'
+'feoh2aq'
+'cuco3aq'
+'cu(co3)2-2'
+'cuoh+'
+'cu(oh)2aq'
+'cu(oh)3-'
+'cu(oh)4-2'
+'cu2(oh)2+2'
+'cuso4aq'
+'cuhco3+'
+'znoh+'
+'zn(oh)2aq'
+'zn(oh)3-'
+'zn(oh)4-2'
+'znso4aq'
+'zn(so4)2-2'
+'znhco3+'
+'znco3aq'
+'zn(co3)2-2'
+'cd(co3)3-4'
+'cdoh+'
+'cd(oh)2aq'
+'cd(oh)3-'
+'cd(oh)4-2'
+'cd2oh+3'
+'cdso4aq'
+'cdhco3+'
+'cdco3aq'
+'cd(so4)2-2'
+'pb(co3)2-2'
+'pboh+'
+'pb(oh)2aq'
+'pb(oh)3-'
+'pb2oh+3'
+'pbso4aq'
+'pb3(oh)4+2'
+'pbco3aq'
+'pb(oh)4-2'
+'pb(so4)2-2'
+'pbhco3+'
+'hco3-'
+'h2co3aq'
+'hso4-'
+'fe(hs)2aq'
+'fe(hs)3-'
+'cu(hs)3-'
+'zn(hs)2aq'
+'zn(hs)3-'
+'cdhs+'
+'cd(hs)2aq'
+'cd(hs)3-'
+'cd(hs)4-2'
+'pb(hs)2aq'
+'pb(hs)3-'
+'h2saq'
+'s-2'
+
+'gases'
+2				 ;number of gases
+'co2(g)'
+'o2(g)'
+
+'minerals'
+20				 ;number of minerals
+'pyrite-par'
+
+'pyrrhot-par'  
+'chalcopyr-sc'
+'sphaler-cd-sc'
+'galena'
+
+'calcite-ch'
+'biotite-ph'
+'albite'
+
+'gypsum'
+'smithsonite'
+'otavite'
+'anglesite'
+
+'ferrihydrite'
+
+'jarositek'
+'siderite(c)'
+
+
+'chlorite'
+
+
+'magnesite'
+!'dolomite-ch'
+
+
+'gibbsite(c)'
+
+'sio2(a,pt)'
+
+'muscovite-ph'
+
+
+'define sorption type'
+'surface-complex'
+
+'sorbed species'
+6
+'=feozn+(w)'
+'=feozn+(s)'
+
+'=feocu+(s)'
+'=feocu+(w)'
+
+'=feocd+(s)'
+
+'=feopb+(s)'
+
+
+
+
+!'define sorption type'
+!'surface-complex'
+
+'redox couples'
+1
+'so4-2' 'hs-1'
+!'fe+2' 'fe+3'  
+
+
+
+'intra-aqueous kinetic reactions'
+3
+'fe+2-ox1'
+'fe+2-ox2'
+'fe+2-ox3'
+
+'scaling for intra-aqueous kinetic reactions'
+{{scaling_ox1}}	   			 ;fe+2-ox1
+{{scaling_ox2}}				 ;fe+2-ox2
+{{scaling_ox3}}			 ;fe+2-ox3
+
+
+'done'
+!
+! Data Block 3: spatial discretization
+! --------------------------------------------------
+!
+'spatial discretization'
+1				 ;number of discretization intervals in x
+1				 ;number of control volumes in x
+0 1				 ;xmin,xmax
+1				 ;number of discretization intervals in y
+1				 ;number of control volumes in y
+0 1				 ;ymin,ymax
+1				 ;number of discretization intervals in z
+41				 ;number of control volumes in z
+0 0.1				 ;zmin,zmax
+
+'done'
+!
+! Data Block 4: time step control - global system
+! --------------------------------------------------
+!
+'time step control - global system'
+'seconds'				 ;time unit
+0.0				 ;time at start of solution
+12787200				 ;final solution time 148 days
+86400				 ;maximum time step
+1.d-15				 ;minimum time step
+
+'done'
+!
+! Data Block 5: control parameters - local geochemistry
+! --------------------------------------------------
+!
+'control parameters - local geochemistry'
+
+'newton iteration settings'
+0.0001				 ;factor for numerical differentiation
+1.d-6				 ;convergence tolerance
+
+'maximum ionic strength'
+2.0				 ;maximum ionic strength
+
+'minimum activity for h2o'
+0.5				 ;minimum activity for h2o
+
+'output time unit'
+'days'
+
+
+'activity update settings'
+'time_lagged'				 ;type of activity update
+
+'done'
+!
+! Data Block 6: control parameters - variably saturated flow
+! --------------------------------------------------
+!
+'control parameters - variably saturated flow'
+
+'mass balance'
+
+'input units for boundary and initial conditions'
+'hydraulic head'				 ;input unit
+
+'compute underrelaxation factor'
+10.0				 ;max allowed update
+
+'solver settings'
+0				 ;level_vs, incomplete factorization level
+100				 ;msolvit_vs, maximum number of solver iterations
+1				 ;idetail_s, solver information level
+1.0				 ;restol_vs, solver residual tolerance
+1.d-7				 ;deltol_vs, solver update tolerance
+
+'newton iteration settings'
+0.0001				 ;increment for numerical differentiation 
+15				 ;max. number of newton iterations 
+1.d-6				 ;convergence tolerance
+0.1				 ;sw_star
+
+'done'
+!
+! Data Block 7: control parameters - reactive transport
+! --------------------------------------------------
+!
+'control parameters - reactive transport'
+
+'mass balance'
+
+'spatial weighting'
+'upstream'				 ;spatial weighting
+
+'activity update settings'
+'time_lagged'				 ;type of activity update
+
+'tortuosity correction'
+'millington'				 ;tortuosity correction
+!'no correction'
+
+!'gas advection'                                           ! enable O2(g) transport with gravity
+!'enable gravity for gas phase'
+
+
+'user-specified underrelaxation factor'
+1.0
+
+'solver settings'
+0				 ;level_vs, incomplete factorization level
+100				 ;msolvit_vs, maximum number of solver iterations
+1				 ;idetail_s, solver information level
+1.d-7				 ;restol_vs, solver residual tolerance
+1.d-7				 ;deltol_vs, solver update tolerance
+
+'newton iteration settings'
+0.0001				 ;increment h for numerical differentiation 
+12				 ;anticipated number of Newton iterations
+100				 ;max. number of Newton iterations 
+0.5				 ;anticipated update in log cycles 
+1.0				 ;maximum update in log cycles
+1.d-6				 ;convergence tolerance (global system)
+
+'done'
+!
+! Data Block 8: output control
+! --------------------------------------------------
+!
+'output control'
+
+'output of spatial data'
+6				 ;number of output times
+86400
+2592000
+5184000
+7776000
+10368000
+12787200
+
+
+'output of transient data'
+1				 ;number of output locations for transient data
+10				 ;time steps between outputs
+1 
+
+'done'
+!
+! Data Block 9: physical parameters - porous medium
+! --------------------------------------------------
+!
+'physical parameters - porous medium'
+1				 ;number of property zones
+
+! --------------------------------------------------
+'number and name of zone'
+1
+'fullArea'
+{{porosity}}				 ;porosity 0.26
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.0 1.0
+
+'end of zone'
+
+! --------------------------------------------------
+'done'
+!
+! Data Block 10: physical parameters - variably saturated flow
+! --------------------------------------------------
+!
+'physical parameters - variably saturated flow'
+
+! --------------------------------------------------
+'fullArea'				 ;name of zone
+
+'hydraulic conductivity in x-direction'
+0.0
+
+'hydraulic conductivity in y-direction'
+0.0
+
+'hydraulic conductivity in z-direction'
+{{Kz}}
+
+'specific storage coefficient'
+1.0d-5
+
+'soil hydraulic function parameters'
+{{residual_sat}}				 ;residual saturation
+{{vg_alpha}}				 ;van genuchten - alpha 4.5
+{{vg_n}}				 ;van genuchten - n 1.9	
+{{vg_l}}				 ;expn L 0.5	
+0 			     ;air entry pressure 0.1
+0.0				 ;max bubble entrapment
+
+'end of zone'
+
+! --------------------------------------------------
+'done'
+!
+! Data Block 11: physical parameters - reactive transport
+! --------------------------------------------------
+!
+'physical parameters - reactive transport'
+'diffusion coefficients'
+{{aq_diff}}				 ;aqueous phase
+{{gas_diff}}				 ;gaseous phase
+!
+! --------------------------------------------------
+'fullArea'				 ;name of zone
+
+'longitudinal dispersivity'
+{{dispersivity}}
+
+'transverse horizontal dispersivity'
+4.45058d-308
+
+'transverse vertical dispersivity'
+1.11261d-306
+
+'end of zone'
+! --------------------------------------------------
+'done'
+!
+! Data Block 12: initial condition - variably saturated flow
+! --------------------------------------------------
+!
+'initial condition - variably saturated flow'
+1				 ;number of initial condition zones
+
+! --------------------------------------------------
+'number and name of zone'
+1
+'fullArea'
+
+'initial condition'
+0.0
+
+!'initial gas saturation'
+!0.0
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.0 0.1
+
+'end of zone'
+
+! --------------------------------------------------
+'done'
+!
+! Data Block 13: boundary conditions - variably saturated flow
+! --------------------------------------------------
+!
+'boundary conditions - variably saturated flow'
+2				 ;number of zones
+
+! --------------------------------------------------
+'number and name of zone'
+1
+'Top'
+
+'boundary type'
+'second' {{top_flux}}				 ;flow rate
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.1 0.1
+
+'end of zone'
+! --------------------------------------------------
+'number and name of zone'
+2
+'Bottom'
+
+'boundary type'
+
+'first' {{bottom_head}}			 ;hydraulic head
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.0 0.0
+
+'end of zone'
+! --------------------------------------------------
+!'transient boundary conditions'
+
+'done'
+
+!
+! Data Block 15: initial condition - reactive transport
+! --------------------------------------------------
+!
+'initial condition - reactive transport'
+1				 ;number of initial condition zones
+
+! --------------------------------------------------
+'number and name of zone'
+1
+'fullArea'
+
+'concentration input'				 ;fullArea
+{{init_po2}}	'po2'	;	o2(aq)
+6.5d-3	'charge'	;	co3-2
+{{init_pH}}	'ph'	;	h+1
+{{init_fe2}}	'free'	;	fe+2
+{{init_so4}}	'free'	;	so4-2
+{{init_zn}}	'free'	;	zn+2
+{{init_ca}}	'free'	;	ca+2
+{{init_mg}}	'free'	;	mg+2
+{{init_cu}}	'free'	;	cu+2
+{{init_cd}}	'free'	;	cd+2
+{{init_k}}	'free'	;	k+1
+{{init_al}}	'free'	;	al+3
+{{init_h4sio4}}	'free'	;	h4sio4
+{{init_na}}	'free'	;	na+1
+1.d-10	'free'	;	fe+3
+{{init_pb}}	'free'	;	pb+2
+1.d-10	'free'	;	'hs-1'
+
+
+'sorption parameter input'
+
+'=feoh(s)' {{feoh_s_mass}} {{feoh_s_area}} {{feoh_s_density}} ; surface site, mass, area, site density
+'=feoh(w)' {{feoh_w_mass}} {{feoh_w_area}} {{feoh_w_density}} ; surface site, mass, area, site density
+
+
+
+'mineral input'				 ;fullArea
+{{phi_pyrite}}  	 .true. 	 'geometric' 	 ;phi, min_equ, type - pyrite-par FeS_2
+1.d-10 	 {{keff_pyrite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+{{imr_pyrite}} 	 {{usr_pyrite}} 	 2.00E-07 	 ;initial mineral radius, unreacted surface radius, minimum radius
+
+{{phi_pyrrhot}} 	 .true. 	 'geometric' 	 ;phi, min_equ, type - pyrrhot-par Fe_{1-x}S
+1.d-10 	  {{keff_pyrrhot}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+6.25E-05  6.20E-05 	 2.00E-07 	 ;initial mineral radius, unreacted surface radius, minimum radius
+
+{{phi_chalcopyr}} 	 .true. 	 'geometric' 	 ;phi, min_equ, type - chalcopyr-sc  CuFeS_2
+1.d-10 	  {{keff_chalcopyr}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+6.25E-05 	 6.20E-05 	 2.00E-07 	 ;initial mineral radius, unreacted surface radius, minimum radius
+
+{{phi_sphalerite}} 	 .true. 	 'geometric' 	 ;phi, min_equ, type - sphaler-cd-sc (Zn, Cd)S
+1.d-10 	 {{keff_sphalerite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+7.25E-05 	 7.20E-05 	 2.00E-07 	 ;initial mineral radius, unreacted surface radius, minimum radius
+
+{{phi_galena}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - galena
+1.d-10 	 {{keff_galena}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+
+{{phi_calcite}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - calcite-ch 5.31E-04
+1.d-10 	 {{keff_calcite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+{{phi_biotite}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - biotite-ph
+1.d-10 	 {{s_biotite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+{{phi_albite}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - albite
+1.d-10 	 {{s_albite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - gypsum
+1.d-10 	 1.d-6 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - smithsonite Zn solubility control
+1.d-10 	 1.d-5 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - otavite Cd solubility control
+1.d-10 	 1.d-5 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - anglesite PbSO4 - Pb solubility control 
+1.d-10 	 1.d-10 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - ferrihydrite
+1.d-10 	 {{keff_ferrihydrite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - jarositek
+1.d-10 	 1.d-12 	 1.32804d-311 	 ;phi_min, k_eff, sat (not used)
+
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - siderite(c)
+1.d-10 	 1.d-9 	 1.32804d-311 	 ;phi_min, k_eff, sat (not used)
+
+
+{{phi_chlorite}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - chlorite
+1.d-10 	{{s_chlorite}} 	 1.32804d-311 	 ;phi_min, k_eff, sat (not used)
+
+
+{{phi_magnesite}} 	 .true. 	 'twothird' 	 ;phi, min_equ, type - dolomite-ch or magnesite
+1.d-10 	 {{keff_magnesite}} 	 9.28376d-312 	 ;phi_min, k_eff, sat (not used)
+
+
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - sio2(a,pt)
+1.d-10 	 1.d-6 	 1.32804d-311 	 ;phi_min, k_eff, sat (not used)
+
+
+1.d-10 	 .true. 	 'constant' 	 ;phi, min_equ, type - gibbsite(c)
+1.d-10 	 1.d-13 	 1.32804d-311 	 ;phi_min, k_eff, sat (not used)
+
+{{phi_muscovite}}	 .false. 	 'twothird' 	 ;phi, min_equ, type - muscovite-ph
+1.d-10 	 35.0 	 1.15599d-311 	 ;phi_min, k_eff, sat (not used)
+
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.0 0.1
+
+'end of zone'
+! --------------------------------------------------
+'done'
+!
+! Data Block 16: boundary conditions - reactive transport
+! --------------------------------------------------
+!
+'boundary conditions - reactive transport'
+2				 ;number of initial condition zones
+
+! --------------------------------------------------
+'number and name of zone'
+1
+'Top'
+
+'boundary type'
+'mixed'
+
+'concentration input'				 ;Top
+0.21	'po2'	;	o2(aq)
+0.00039	'pco2'	;	co3-2
+{{bc_top_pH}}	'ph'	;	h+1
+1.d-10	'free'	;	fe+2
+1.d-10	'free'	;	so4-2
+1.d-10	'free'	;	zn+2
+1.d-10	'free'	;	ca+2
+1.d-10	'free'	;	mg+2
+1.d-10	'free'	;	cu+2
+1.d-10	'free'	;	cd+2
+1.d-10	'free'	;	k+1
+1.d-10	'free'	;	al+3
+1.d-10	'free'	;	h4sio4
+1.d-10	'free'	;	na+1
+1.d-10	'free'	;	fe+3
+1.d-10	'free'	;	pb+2
+1.d-10	'free'	;	'hs-1'
+
+
+
+'guess for ph'
+7.0
+
+'extent of zone'
+0.0 1.0 0.0 1.0 0.1 0.1
+
+'end of zone'
+! --------------------------------------------------
+'number and name of zone'
+2
+'Bottom'
+
+'boundary type'
+'second'
+
+'guess for ph'
+7.0
+'extent of zone'
+0.0 1.0 0.0 1.0 0.0 0.0
+
+'end of zone'
+
+
+
+! --------------------------------------------------
+
+'done'

@@ -1,0 +1,55 @@
+{
+  "schema_version": "V15.3.1_candidate_explanation_v1",
+  "explainability_version": "V15.3.1",
+  "candidate_number": 47,
+  "timestamp": "2026-07-27T16:03:27+03:00",
+  "parameter": "vg_alpha",
+  "group": "hydraulic",
+  "display_group": "hydraulic",
+  "direction": "decrease",
+  "step_fraction": 0.02671199835193024,
+  "old_value": 4.5,
+  "new_value": 4.451524463041235,
+  "selection_reason": [
+    "vg_alpha was active and eligible.",
+    "It belonged to the hydraulic parameter group.",
+    "V14 selected it through the deterministic optimizer queue.",
+    "The tested direction was decrease.",
+    "The candidate worsened TOTAL_SCORE from 9.834526 to 9.880492."
+  ],
+  "decision_context": {
+    "current_pass": null,
+    "accepted_improvements_this_pass": null,
+    "interaction_runtime_state_available": true,
+    "matching_transaction_found": true,
+    "optimizer_phase": "candidate_evaluated",
+    "runtime_status": "reopened",
+    "user_status": "active",
+    "gpt_status": "disabled_in_yaml",
+    "display_group": "hydraulic",
+    "v15_3_1_interpretation": "candidate was active; parameter belonged to group; deterministic queue selected it; V14-selected direction/step were evaluated; decision followed TOTAL_SCORE comparison"
+  },
+  "candidate_result": {
+    "baseline_total_score": 9.834526283724943,
+    "candidate_total_score": 9.880492277261004,
+    "delta_total_score": 0.045965993536061234,
+    "accepted": false,
+    "decision": "reject",
+    "rejection_reason": "TOTAL_SCORE_not_meaningfully_improved",
+    "outcome": "reject",
+    "outcome_text": "Rejected; best parameter set was retained."
+  },
+  "scientific_interpretation": "The tested vg_alpha decrease perturbation did not improve the composite calibration objective.",
+  "process_family": "Hydraulic transport",
+  "hydrogeochemical_process": "Water flow, residence time, gas access, dilution and vertical solute transport",
+  "evidence_limits": [
+    "Candidate-level pH and SO4 response metrics were not recorded for every V14 parameter trial unless explicit columns or linked diagnostics exist.",
+    "Selection reasons are reconstructed from the exported decision log, optimizer state, transaction manifests, and configuration files."
+  ],
+  "transaction": {
+    "found": true,
+    "transaction_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260727_160259_c3620f1f54ab4785b75f30a43258c434",
+    "status": "rejected",
+    "run_status": "success"
+  }
+}

@@ -1,0 +1,17 @@
+V14.4.1 validation
+==================
+
+Targeted V14.4.1 + V14.4 stepping + transaction tests:
+13 passed
+
+Full V14 regression test selection (tests/test_v14*.py):
+48 passed, 2 subtests passed
+
+Validated behaviors:
+- one optimizer event is written once even when history_manager is attached
+- decision log stores V14.4 range-step metadata in direct columns and event_json
+- accepted baseline can be reused from persistent exact-candidate cache
+- an already-started V14.4 campaign can bootstrap an exact old baseline from run_ranking when referenced by the V14 decision log
+- changed workbook context does not hit the persistent cache
+- V14.4 range-normalized step tests remain passing
+- V14 transaction recovery tests remain passing

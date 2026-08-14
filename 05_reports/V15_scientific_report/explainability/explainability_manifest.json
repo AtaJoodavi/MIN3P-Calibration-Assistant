@@ -1,0 +1,30 @@
+{
+  "explainability_version": "V15.3.1",
+  "generated": "2026-08-03T14:33:29+03:00",
+  "candidate_count": 282,
+  "outputs": {
+    "candidate_explanations_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\explainability\\candidate_explanations.json",
+    "candidate_explanation_xlsx": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\explainability\\candidate_explanation.xlsx",
+    "explainability_summary_xlsx": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\explainability\\explainability_summary.xlsx",
+    "html_report": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\V15_calibration_story_report.html",
+    "markdown_report": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\V15_calibration_story_report.md"
+  },
+  "protected_hashes_before": {
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_state.xlsx": "12e82f0e209443c05dbb60a3d64ebc92a3e0c3d259f9f1476249ac110658e843",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_parameter_state.xlsx": "7f4f7356d3e7dc2637f4e8d4b089452e3c8feec8709046fb5e1599f6be01c7bc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_parameter_runtime_state.json": "099a0f5e5113b68893cdd0c7d3d517581d3a02b9d15a49c5094a009ec0c3a00f",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_step_size_state.json": "4d843d57855b10419d2449b6a38fb3a86505f13c2014132a1f1824da65023ebf"
+  },
+  "protected_hashes_after": {
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx": "8d7fad5aa7ddf58e22304f61a005f0deb91e6afc7725f9fa22f636a19467f7cc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_state.xlsx": "12e82f0e209443c05dbb60a3d64ebc92a3e0c3d259f9f1476249ac110658e843",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_optimizer_parameter_state.xlsx": "7f4f7356d3e7dc2637f4e8d4b089452e3c8feec8709046fb5e1599f6be01c7bc",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_parameter_runtime_state.json": "099a0f5e5113b68893cdd0c7d3d517581d3a02b9d15a49c5094a009ec0c3a00f",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_step_size_state.json": "4d843d57855b10419d2449b6a38fb3a86505f13c2014132a1f1824da65023ebf"
+  },
+  "protected_campaign_hashes_unchanged": true,
+  "warnings": []
+}

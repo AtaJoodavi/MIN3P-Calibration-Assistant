@@ -1,0 +1,55 @@
+{
+  "schema_version": "V15.3.1_candidate_explanation_v1",
+  "explainability_version": "V15.3.1",
+  "candidate_number": 265,
+  "timestamp": "2026-07-28T10:50:12+03:00",
+  "parameter": "imr_pyrite",
+  "group": "mineral_kinetics",
+  "display_group": "mineral_kinetics",
+  "direction": "decrease",
+  "step_fraction": 0.005,
+  "old_value": 6.604116046691645e-05,
+  "new_value": 6.446591421884527e-05,
+  "selection_reason": [
+    "imr_pyrite was active and eligible.",
+    "It belonged to the mineral_kinetics parameter group.",
+    "V14 selected it through the deterministic optimizer queue.",
+    "The tested direction was decrease.",
+    "The candidate improved TOTAL_SCORE from 7.309016 to 7.163816."
+  ],
+  "decision_context": {
+    "current_pass": null,
+    "accepted_improvements_this_pass": null,
+    "interaction_runtime_state_available": true,
+    "matching_transaction_found": true,
+    "optimizer_phase": "candidate_evaluated",
+    "runtime_status": "pass_complete",
+    "user_status": "active",
+    "gpt_status": "disabled_in_yaml",
+    "display_group": "mineral_kinetics",
+    "v15_3_1_interpretation": "candidate was active; parameter belonged to group; deterministic queue selected it; V14-selected direction/step were evaluated; decision followed TOTAL_SCORE comparison"
+  },
+  "candidate_result": {
+    "baseline_total_score": 7.309015975038039,
+    "candidate_total_score": 7.163816301806617,
+    "delta_total_score": -0.14519967323142247,
+    "accepted": true,
+    "decision": "accept",
+    "rejection_reason": "",
+    "outcome": "accepted_improvement",
+    "outcome_text": "Accepted; candidate parameter set became the retained best set."
+  },
+  "scientific_interpretation": "The tested imr_pyrite decrease perturbation improved the composite calibration objective.",
+  "process_family": "Sulfide oxidation",
+  "hydrogeochemical_process": "Pyrite oxidation, acidity generation and sulfate release",
+  "evidence_limits": [
+    "Candidate-level pH and SO4 response metrics were not recorded for every V14 parameter trial unless explicit columns or linked diagnostics exist.",
+    "Selection reasons are reconstructed from the exported decision log, optimizer state, transaction manifests, and configuration files."
+  ],
+  "transaction": {
+    "found": true,
+    "transaction_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260728_105020_017607b7c3fc4453bb8f0c14b604fcdf",
+    "status": "rejected",
+    "run_status": "success"
+  }
+}

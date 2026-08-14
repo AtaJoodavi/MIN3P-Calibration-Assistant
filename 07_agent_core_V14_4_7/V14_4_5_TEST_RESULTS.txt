@@ -1,0 +1,28 @@
+V14.4.5 validation
+==================
+
+Dedicated V14.4.5 guard tests:
+  5 passed
+
+Complete V14 calibration regression suite:
+  69 passed
+  2 subtests passed
+  0 V14 failures
+
+Full mixed V14 + V15 suite:
+  80 passed
+  2 subtests passed
+  4 pre-existing V15 reporting-test failures
+
+The four full-suite failures are unrelated to the V14.4.5 calibration engine:
+- two tests expect an older V15 reporter version string;
+- one test expects the older conceptual-model wording "1D vertical";
+- one V15 reporting fixture expects an artifact path that is currently None.
+
+V14.4.5 verifies:
+- exact hard-bound no-op candidates are skipped before MIN3P;
+- near-bound sub-tolerance residual candidates are skipped;
+- meaningful moves that land on a bound are still evaluated;
+- blocked single-parameter directions immediately yield to the remaining legal direction;
+- interaction-pair candidates are suppressed when one pair move is a blocked no-op;
+- physical run counts are not incremented for blocked no-op candidates.

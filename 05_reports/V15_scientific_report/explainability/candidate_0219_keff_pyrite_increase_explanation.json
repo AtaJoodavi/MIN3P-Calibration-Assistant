@@ -1,0 +1,55 @@
+{
+  "schema_version": "V15.3.1_candidate_explanation_v1",
+  "explainability_version": "V15.3.1",
+  "candidate_number": 219,
+  "timestamp": "2026-07-28T09:26:45+03:00",
+  "parameter": "keff_pyrite",
+  "group": "mineral_kinetics",
+  "display_group": "mineral_kinetics",
+  "direction": "increase",
+  "step_fraction": 0.005625,
+  "old_value": 0.006442174845490425,
+  "new_value": 0.00696277734743499,
+  "selection_reason": [
+    "keff_pyrite was active and eligible.",
+    "It belonged to the mineral_kinetics parameter group.",
+    "V14 selected it through the deterministic optimizer queue.",
+    "The tested direction was increase.",
+    "The candidate worsened TOTAL_SCORE from 8.410688 to 8.604774."
+  ],
+  "decision_context": {
+    "current_pass": null,
+    "accepted_improvements_this_pass": null,
+    "interaction_runtime_state_available": true,
+    "matching_transaction_found": true,
+    "optimizer_phase": "candidate_evaluated",
+    "runtime_status": "pass_complete",
+    "user_status": "active",
+    "gpt_status": "disabled_in_yaml",
+    "display_group": "mineral_kinetics",
+    "v15_3_1_interpretation": "candidate was active; parameter belonged to group; deterministic queue selected it; V14-selected direction/step were evaluated; decision followed TOTAL_SCORE comparison"
+  },
+  "candidate_result": {
+    "baseline_total_score": 8.410688038322872,
+    "candidate_total_score": 8.604773651151826,
+    "delta_total_score": 0.1940856128289532,
+    "accepted": false,
+    "decision": "reject",
+    "rejection_reason": "TOTAL_SCORE_not_meaningfully_improved",
+    "outcome": "reject",
+    "outcome_text": "Rejected; best parameter set was retained."
+  },
+  "scientific_interpretation": "The tested keff_pyrite increase perturbation did not improve the composite calibration objective.",
+  "process_family": "Sulfide oxidation",
+  "hydrogeochemical_process": "Pyrite oxidation, acidity generation and sulfate release",
+  "evidence_limits": [
+    "Candidate-level pH and SO4 response metrics were not recorded for every V14 parameter trial unless explicit columns or linked diagnostics exist.",
+    "Selection reasons are reconstructed from the exported decision log, optimizer state, transaction manifests, and configuration files."
+  ],
+  "transaction": {
+    "found": true,
+    "transaction_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260728_092638_0897f0d15d0946738e0d437433e406fa",
+    "status": "rejected",
+    "run_status": ""
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "reporter_version": "V15.4.2",
+  "generated_at": "2026-08-03T14:33:18+03:00",
+  "dat_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\HCT3.dat",
+  "dat_sha256": "f4d5bbd832d6e740c75283822e9a3e63ee202e398c19c40a321b74621c58e42b",
+  "conceptual_image_mode": "deterministic",
+  "conceptual_detail": "paper",
+  "gpt_config_enabled": false,
+  "gpt_used": false,
+  "generation_status": "deterministic_requested",
+  "draft_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_model_deterministic_draft.png",
+  "final_png": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_hydrogeochemical_model.png",
+  "final_svg": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\figures\\01_conceptual_hydrogeochemical_model.svg",
+  "facts_json": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_facts.json",
+  "prompt_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\05_reports\\V15_scientific_report\\audit\\01_conceptual_model_prompt.txt",
+  "overlay_policy": "Python renders all scientific text, arrows, boundaries, grid facts, and legend. GPT never supplies authoritative labels."
+}

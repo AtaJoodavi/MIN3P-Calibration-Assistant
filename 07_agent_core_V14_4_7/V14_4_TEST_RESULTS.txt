@@ -1,0 +1,28 @@
+MIN3P AI Assistant V14.4 validation
+Date: 2026-07-27
+
+V14 calibration regression command:
+  python -m pytest -q tests/test_v14*.py
+
+Result:
+  43 passed, 2 subtests passed
+
+Dedicated V14.4 stepping tests:
+  7 passed
+
+Smoke verifier:
+  PASS: V14.4 range-normalized logarithmic stepping
+  configured range [1e-6, 1] = 6 decades
+  5% increase factor = 1.995262315
+  5% decrease factor = 0.501187234
+  no-bounds fallback factor = 1.050000000
+
+Full mixed V14+V15 test suite:
+  54 passed, 2 subtests passed, 4 failed
+
+The four full-suite failures are in pre-existing V15 reporting tests and are
+outside the V14.4 calibration change:
+- two tests expect REPORTER_VERSION V15.2.1 while code is V15.4.2;
+- one conceptual-model wording expectation differs ("1D vertical" vs
+  "1D vertical column");
+- one V15 scientific-report artifact test receives None for a figure path.

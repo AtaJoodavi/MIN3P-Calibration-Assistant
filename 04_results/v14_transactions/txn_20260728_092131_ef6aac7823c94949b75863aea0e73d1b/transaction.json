@@ -1,0 +1,1079 @@
+{
+  "applied_parameters": [
+    {
+      "new_value": 0.004844874232369353,
+      "old_value": 0.004521499714179219,
+      "parameter": "keff_pyrite"
+    }
+  ],
+  "best_config_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx",
+  "candidate_config_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260728_092131_ef6aac7823c94949b75863aea0e73d1b\\candidate_config.xlsx",
+  "candidate_config_sha256": "400F19506E73EC5CD4F0F2C16DC2EAC20AF0E9FFCDFB029CF6F4B7FCF21A3F4E",
+  "candidate_dat_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260728_092131_ef6aac7823c94949b75863aea0e73d1b\\candidate_input.dat",
+  "candidate_id": "ef6aac7823c94949b75863aea0e73d1b",
+  "candidate_semantic_sha256": "4680915076F32378DCA6573BA24DF8F5BDEC9B68BF3204EF6321A3EC57478B86",
+  "canonical_hash_after_commit": "400F19506E73EC5CD4F0F2C16DC2EAC20AF0E9FFCDFB029CF6F4B7FCF21A3F4E",
+  "canonical_hashes_at_selection": {
+    "best_config": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx",
+    "best_exists": true,
+    "best_sha256": "2365AEB4696AB73547AC1695AE1776C6E250E04FC7BB2760E3278E39052C6B62",
+    "canonical_config": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\01_input\\agent_config.xlsx",
+    "canonical_exists": true,
+    "canonical_sha256": "2365AEB4696AB73547AC1695AE1776C6E250E04FC7BB2760E3278E39052C6B62",
+    "match": true
+  },
+  "checkpoint_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v14_transactions\\txn_20260728_092131_ef6aac7823c94949b75863aea0e73d1b\\checkpoint.json",
+  "completed_at": "2026-07-28T09:22:17+03:00",
+  "created_at": "2026-07-28T09:21:31+03:00",
+  "evaluation_context_sha256": "5FF8BED03F9C5185706E5B420EF12AC80DB4A94685A9FEBBA4112FF6E44D6467",
+  "event": {
+    "MIN3P_run_status": "success",
+    "accepted": true,
+    "action": "accepted_meaningful_improvement_continue_direction",
+    "baseline_TOTAL_SCORE": 8.746892608924114,
+    "candidate_TOTAL_SCORE": 8.651589452698936,
+    "candidate_id": "ef6aac7823c94949b75863aea0e73d1b",
+    "candidate_type": "single_parameter",
+    "constraint_count": 0,
+    "constraint_failures": "",
+    "decision": "accept",
+    "diagnostic_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\v13_5_objective_diagnostics.xlsx",
+    "direction": "increase",
+    "direction_label": "increase",
+    "effective_TOTAL_SCORE": 8.651589452698936,
+    "factor_applied": 1.071519305237606,
+    "group": "mineral_kinetics",
+    "improvement_absolute": 0.09530315622517804,
+    "improvement_relative": 0.010895658662591096,
+    "iteration": 6,
+    "new_value": 0.004844874232369353,
+    "next_step_fraction": 0.0075,
+    "numeric_change": 0.00032337451819013357,
+    "objective_improved": true,
+    "old_value": 0.004521499714179219,
+    "optimizer_version": "V14.4.6",
+    "parameter": "keff_pyrite",
+    "parent_best_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092041",
+    "pass_accepted_improvements_count": 28,
+    "pass_number": 1,
+    "priority_local_refinement": false,
+    "priority_refinement_rounds_remaining": 0,
+    "rejection_reason": "",
+    "reopened_parameters": "",
+    "restoration_verified": true,
+    "run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+    "scientific_ok": true,
+    "scientific_penalty": 0.0,
+    "search_phase": "directional_continue",
+    "species_improved_count": 4,
+    "species_worsened_count": 4,
+    "step_fraction": 0.005,
+    "timestamp": "2026-07-28T09:22:15+03:00",
+    "tradeoff_class": "species_tradeoff",
+    "v14_numerical_diagnostics": {
+      "failed_timestep_fraction": null,
+      "hard_reject": false,
+      "risk_level": "LOW",
+      "run_valid": true,
+      "score": 8.651589452698936,
+      "status": "available",
+      "warnings": []
+    },
+    "v14_numerical_status": "available",
+    "v14_plausibility_diagnostics": {
+      "flags": [],
+      "hard_reject": false,
+      "reason": "No additional V14 hard physical constraint was configured outside existing deterministic bounds and scientific-constraint rules.",
+      "run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+      "score": 8.651589452698936,
+      "status": "available"
+    },
+    "v14_plausibility_status": "available",
+    "v14_residual_diagnostics": {
+      "baseline_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092041",
+      "candidate_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+      "flags": [
+        "ph_trend_signal",
+        "systematic_negative_bias:Bias_pH",
+        "systematic_negative_bias:Bias_so4-2",
+        "systematic_negative_bias:Bias_zn+2",
+        "systematic_negative_bias:Bias_cu+2",
+        "systematic_positive_bias:Bias_pb+2",
+        "systematic_negative_bias:Bias_cd+2",
+        "systematic_negative_bias:Bias_al+3",
+        "systematic_negative_bias:Bias_ca+2"
+      ],
+      "likely_parameter_groups": [
+        "mineral_kinetics",
+        "sorption"
+      ],
+      "limitations": [
+        "Diagnostics are based on available aggregate ranking metrics; time-series pattern inference requires explicitly named early/late/peak/bias metrics."
+      ],
+      "metric_comparisons": [
+        {
+          "baseline": 7.56,
+          "candidate": 7.56,
+          "delta": 0.0,
+          "metric": "initial_pH"
+        },
+        {
+          "baseline": 9.523809524e-07,
+          "candidate": 9.523809524e-07,
+          "delta": 0.0,
+          "metric": "keff_sphalerite"
+        },
+        {
+          "baseline": 1e-08,
+          "candidate": 1e-08,
+          "delta": 0.0,
+          "metric": "keff_ferrihydrite"
+        },
+        {
+          "baseline": 5.6,
+          "candidate": 5.6,
+          "delta": 0.0,
+          "metric": "bc_top_pH"
+        },
+        {
+          "baseline": 672.0000000000001,
+          "candidate": 672.0000000000001,
+          "delta": 0.0,
+          "metric": "feoh_s_area"
+        },
+        {
+          "baseline": 0.056,
+          "candidate": 0.056,
+          "delta": 0.0,
+          "metric": "feoh_s_density"
+        },
+        {
+          "baseline": 0.2,
+          "candidate": 0.2,
+          "delta": 0.0,
+          "metric": "feoh_s_mass"
+        },
+        {
+          "baseline": 600.0,
+          "candidate": 600.0,
+          "delta": 0.0,
+          "metric": "feoh_w_area"
+        },
+        {
+          "baseline": 2.3,
+          "candidate": 2.3,
+          "delta": 0.0,
+          "metric": "feoh_w_density"
+        },
+        {
+          "baseline": 0.2,
+          "candidate": 0.2,
+          "delta": 0.0,
+          "metric": "feoh_w_mass"
+        },
+        {
+          "baseline": 0.2,
+          "candidate": 0.2,
+          "delta": 0.0,
+          "metric": "init_fe2"
+        },
+        {
+          "baseline": 7.56,
+          "candidate": 7.56,
+          "delta": 0.0,
+          "metric": "init_pH"
+        },
+        {
+          "baseline": 629.0,
+          "candidate": 629.0,
+          "delta": 0.0,
+          "metric": "init_so4"
+        },
+        {
+          "baseline": 0.0159,
+          "candidate": 0.0159,
+          "delta": 0.0,
+          "metric": "phi_albite"
+        },
+        {
+          "baseline": 0.023,
+          "candidate": 0.023,
+          "delta": 0.0,
+          "metric": "phi_biotite"
+        },
+        {
+          "baseline": 0.0177,
+          "candidate": 0.0177,
+          "delta": 0.0,
+          "metric": "phi_calcite"
+        },
+        {
+          "baseline": 0.00248,
+          "candidate": 0.00248,
+          "delta": 0.0,
+          "metric": "phi_chalcopyr"
+        },
+        {
+          "baseline": 0.014188679,
+          "candidate": 0.014188679,
+          "delta": 0.0,
+          "metric": "phi_chlorite"
+        },
+        {
+          "baseline": 0.000896,
+          "candidate": 0.000896,
+          "delta": 0.0,
+          "metric": "phi_galena"
+        },
+        {
+          "baseline": 0.00531,
+          "candidate": 0.00531,
+          "delta": 0.0,
+          "metric": "phi_magnesite"
+        },
+        {
+          "baseline": 0.0057,
+          "candidate": 0.0057,
+          "delta": 0.0,
+          "metric": "phi_muscovite"
+        },
+        {
+          "baseline": 0.000861,
+          "candidate": 0.000861,
+          "delta": 0.0,
+          "metric": "phi_pyrite"
+        },
+        {
+          "baseline": 0.000727,
+          "candidate": 0.000727,
+          "delta": 0.0,
+          "metric": "phi_pyrrhot"
+        },
+        {
+          "baseline": 0.00956,
+          "candidate": 0.00956,
+          "delta": 0.0,
+          "metric": "phi_sphalerite"
+        },
+        {
+          "baseline": 4.51220114224845,
+          "candidate": 4.51220114224845,
+          "delta": 0.0,
+          "metric": "vg_alpha"
+        },
+        {
+          "baseline": 0.7513523371792324,
+          "candidate": 0.7578434213407051,
+          "delta": 0.006491084161472704,
+          "metric": "RMSE_pH"
+        },
+        {
+          "baseline": 0.4551433610330118,
+          "candidate": 0.4529856259940614,
+          "delta": -0.0021577350389503924,
+          "metric": "MAE_pH"
+        },
+        {
+          "baseline": -0.197725688950434,
+          "candidate": -0.215687779874212,
+          "delta": -0.017962090923778012,
+          "metric": "Bias_pH"
+        },
+        {
+          "baseline": 5.528571428571428,
+          "candidate": 5.528571428571428,
+          "delta": 0.0,
+          "metric": "Mean_obs_pH"
+        },
+        {
+          "baseline": 5.330845739620995,
+          "candidate": 5.312883648697216,
+          "delta": -0.01796209092377854,
+          "metric": "Mean_model_pH"
+        },
+        {
+          "baseline": 0.002745078515898205,
+          "candidate": 0.002598417028375292,
+          "delta": -0.00014666148752291285,
+          "metric": "RMSE_so4-2"
+        },
+        {
+          "baseline": 0.002406962733846399,
+          "candidate": 0.002306849068570353,
+          "delta": -0.00010011366527604582,
+          "metric": "MAE_so4-2"
+        },
+        {
+          "baseline": -0.002406962733846399,
+          "candidate": -0.002306849068570353,
+          "delta": 0.00010011366527604582,
+          "metric": "Bias_so4-2"
+        },
+        {
+          "baseline": 0.004644914388824444,
+          "candidate": 0.004644914388824444,
+          "delta": 0.0,
+          "metric": "Mean_obs_so4-2"
+        },
+        {
+          "baseline": 0.002237951654978046,
+          "candidate": 0.002338065320254093,
+          "delta": 0.00010011366527604712,
+          "metric": "Mean_model_so4-2"
+        },
+        {
+          "baseline": 0.0002181062609223547,
+          "candidate": 0.0002178724985589641,
+          "delta": -2.337623633905789e-07,
+          "metric": "RMSE_zn+2"
+        },
+        {
+          "baseline": 0.0001125643806729784,
+          "candidate": 0.0001122907746956201,
+          "delta": -2.7360597735830107e-07,
+          "metric": "MAE_zn+2"
+        },
+        {
+          "baseline": -1.563590903133239e-05,
+          "candidate": -1.615442936705699e-05,
+          "delta": -5.185203357245985e-07,
+          "metric": "Bias_zn+2"
+        },
+        {
+          "baseline": 9.637175477149737e-07,
+          "candidate": 9.13081709310302e-07,
+          "delta": -5.063583840467176e-08,
+          "metric": "RMSE_cu+2"
+        },
+        {
+          "baseline": 6.799445535547839e-07,
+          "candidate": 6.269116824063226e-07,
+          "delta": -5.303287114846135e-08,
+          "metric": "MAE_cu+2"
+        },
+        {
+          "baseline": -5.84127575896263e-07,
+          "candidate": -5.123165912502208e-07,
+          "delta": 7.181098464604222e-08,
+          "metric": "Bias_cu+2"
+        },
+        {
+          "baseline": 6.445914199360535e-06,
+          "candidate": 6.489415273863307e-06,
+          "delta": 4.350107450277162e-08,
+          "metric": "RMSE_pb+2"
+        },
+        {
+          "baseline": 5.377129003986701e-06,
+          "candidate": 5.399806493820462e-06,
+          "delta": 2.2677489833760562e-08,
+          "metric": "MAE_pb+2"
+        },
+        {
+          "baseline": 5.060304997737518e-08,
+          "candidate": 6.807697821824866e-08,
+          "delta": 1.7473928240873484e-08,
+          "metric": "Bias_pb+2"
+        },
+        {
+          "baseline": 3.112399324703525e-07,
+          "candidate": 3.304806873664876e-07,
+          "delta": 1.9240754896135064e-08,
+          "metric": "RMSE_cd+2"
+        },
+        {
+          "baseline": 2.2312276085494e-07,
+          "candidate": 2.302562405703304e-07,
+          "delta": 7.133479715390401e-09,
+          "metric": "MAE_cd+2"
+        },
+        {
+          "baseline": -4.029753879261978e-08,
+          "candidate": -3.546072961225856e-08,
+          "delta": 4.836809180361221e-09,
+          "metric": "Bias_cd+2"
+        },
+        {
+          "baseline": 1.975805954728339e-06,
+          "candidate": 2.086349435349414e-06,
+          "delta": 1.1054348062107485e-07,
+          "metric": "RMSE_al+3"
+        },
+        {
+          "baseline": 1.69784357592964e-06,
+          "candidate": 1.816608477434103e-06,
+          "delta": 1.1876490150446305e-07,
+          "metric": "MAE_al+3"
+        },
+        {
+          "baseline": -8.168071119001967e-07,
+          "candidate": -6.682226403029038e-07,
+          "delta": 1.4858447159729284e-07,
+          "metric": "Bias_al+3"
+        },
+        {
+          "baseline": 0.002401617774259232,
+          "candidate": 0.002299258574078515,
+          "delta": -0.00010235920018071684,
+          "metric": "RMSE_ca+2"
+        },
+        {
+          "baseline": 0.002198980694573857,
+          "candidate": 0.002119264798165523,
+          "delta": -7.971589640833401e-05,
+          "metric": "MAE_ca+2"
+        },
+        {
+          "baseline": -0.00179977909206459,
+          "candidate": -0.001720063195656256,
+          "delta": 7.971589640833401e-05,
+          "metric": "Bias_ca+2"
+        },
+        {
+          "baseline": 0.8762841845187216,
+          "candidate": 0.8838545800703383,
+          "delta": 0.00757039555161676,
+          "metric": "NORM_RMSE_pH"
+        },
+        {
+          "baseline": 1.752568369037443,
+          "candidate": 1.767709160140677,
+          "delta": 0.015140791103233964,
+          "metric": "WEIGHTED_RMSE_pH"
+        },
+        {
+          "baseline": 1.062097242899126,
+          "candidate": 1.005352504766708,
+          "delta": -0.05674473813241798,
+          "metric": "NORM_RMSE_so4-2"
+        },
+        {
+          "baseline": 2.124194485798252,
+          "candidate": 2.010705009533416,
+          "delta": -0.11348947626483596,
+          "metric": "WEIGHTED_RMSE_so4-2"
+        },
+        {
+          "baseline": 0.9956334335749819,
+          "candidate": 0.9945663315875427,
+          "delta": -0.0010671019874392007,
+          "metric": "NORM_RMSE_zn+2"
+        },
+        {
+          "baseline": 0.9956334335749819,
+          "candidate": 0.9945663315875427,
+          "delta": -0.0010671019874392007,
+          "metric": "WEIGHTED_RMSE_zn+2"
+        },
+        {
+          "baseline": 0.585524100493086,
+          "candidate": 0.5547593771517845,
+          "delta": -0.030764723341301536,
+          "metric": "NORM_RMSE_cu+2"
+        },
+        {
+          "baseline": 0.585524100493086,
+          "candidate": 0.5547593771517845,
+          "delta": -0.030764723341301536,
+          "metric": "WEIGHTED_RMSE_cu+2"
+        },
+        {
+          "baseline": 0.9886226462741854,
+          "candidate": 0.9952944923553769,
+          "delta": 0.006671846081191535,
+          "metric": "NORM_RMSE_pb+2"
+        },
+        {
+          "baseline": 0.9886226462741854,
+          "candidate": 0.9952944923553769,
+          "delta": 0.006671846081191535,
+          "metric": "WEIGHTED_RMSE_pb+2"
+        },
+        {
+          "baseline": 0.93249167117733,
+          "candidate": 0.9901380134875971,
+          "delta": 0.05764634231026711,
+          "metric": "NORM_RMSE_cd+2"
+        },
+        {
+          "baseline": 0.93249167117733,
+          "candidate": 0.9901380134875971,
+          "delta": 0.05764634231026711,
+          "metric": "WEIGHTED_RMSE_cd+2"
+        },
+        {
+          "baseline": 0.2927736770951402,
+          "candidate": 0.3091539401583606,
+          "delta": 0.016380263063220435,
+          "metric": "NORM_RMSE_al+3"
+        },
+        {
+          "baseline": 0.2927736770951402,
+          "candidate": 0.3091539401583606,
+          "delta": 0.016380263063220435,
+          "metric": "WEIGHTED_RMSE_al+3"
+        },
+        {
+          "baseline": 1.075084225473693,
+          "candidate": 1.029263128284181,
+          "delta": -0.045821097189511883,
+          "metric": "NORM_RMSE_ca+2"
+        },
+        {
+          "baseline": 1.075084225473693,
+          "candidate": 1.029263128284181,
+          "delta": -0.045821097189511883,
+          "metric": "WEIGHTED_RMSE_ca+2"
+        },
+        {
+          "baseline": 8.746892608924114,
+          "candidate": 8.651589452698936,
+          "delta": -0.09530315622517804,
+          "metric": "TOTAL_SCORE_RMSE_COMPONENT"
+        }
+      ],
+      "objective_delta": 0.09530315622517804,
+      "status": "available"
+    },
+    "v14_residual_status": "available",
+    "valid_run": true
+  },
+  "observation_payload": {
+    "baseline_TOTAL_SCORE": 8.746892608924114,
+    "candidate_TOTAL_SCORE": 8.651589452698936,
+    "candidate_id": "ef6aac7823c94949b75863aea0e73d1b",
+    "diagnostics": {
+      "constraint_count": 0,
+      "constraint_failures": "",
+      "scientific_ok": true,
+      "scientific_penalty": 0.0,
+      "tradeoff_class": "",
+      "v14_numerical_diagnostics": {
+        "failed_timestep_fraction": null,
+        "hard_reject": false,
+        "risk_level": "LOW",
+        "run_valid": true,
+        "score": 8.651589452698936,
+        "status": "available",
+        "warnings": []
+      },
+      "v14_numerical_status": "available",
+      "v14_plausibility_diagnostics": {
+        "flags": [],
+        "hard_reject": false,
+        "reason": "No additional V14 hard physical constraint was configured outside existing deterministic bounds and scientific-constraint rules.",
+        "run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+        "score": 8.651589452698936,
+        "status": "available"
+      },
+      "v14_plausibility_status": "available",
+      "v14_residual_diagnostics": {
+        "baseline_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092041",
+        "candidate_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+        "flags": [
+          "ph_trend_signal",
+          "systematic_negative_bias:Bias_pH",
+          "systematic_negative_bias:Bias_so4-2",
+          "systematic_negative_bias:Bias_zn+2",
+          "systematic_negative_bias:Bias_cu+2",
+          "systematic_positive_bias:Bias_pb+2",
+          "systematic_negative_bias:Bias_cd+2",
+          "systematic_negative_bias:Bias_al+3",
+          "systematic_negative_bias:Bias_ca+2"
+        ],
+        "likely_parameter_groups": [
+          "mineral_kinetics",
+          "sorption"
+        ],
+        "limitations": [
+          "Diagnostics are based on available aggregate ranking metrics; time-series pattern inference requires explicitly named early/late/peak/bias metrics."
+        ],
+        "metric_comparisons": [
+          {
+            "baseline": 7.56,
+            "candidate": 7.56,
+            "delta": 0.0,
+            "metric": "initial_pH"
+          },
+          {
+            "baseline": 9.523809524e-07,
+            "candidate": 9.523809524e-07,
+            "delta": 0.0,
+            "metric": "keff_sphalerite"
+          },
+          {
+            "baseline": 1e-08,
+            "candidate": 1e-08,
+            "delta": 0.0,
+            "metric": "keff_ferrihydrite"
+          },
+          {
+            "baseline": 5.6,
+            "candidate": 5.6,
+            "delta": 0.0,
+            "metric": "bc_top_pH"
+          },
+          {
+            "baseline": 672.0000000000001,
+            "candidate": 672.0000000000001,
+            "delta": 0.0,
+            "metric": "feoh_s_area"
+          },
+          {
+            "baseline": 0.056,
+            "candidate": 0.056,
+            "delta": 0.0,
+            "metric": "feoh_s_density"
+          },
+          {
+            "baseline": 0.2,
+            "candidate": 0.2,
+            "delta": 0.0,
+            "metric": "feoh_s_mass"
+          },
+          {
+            "baseline": 600.0,
+            "candidate": 600.0,
+            "delta": 0.0,
+            "metric": "feoh_w_area"
+          },
+          {
+            "baseline": 2.3,
+            "candidate": 2.3,
+            "delta": 0.0,
+            "metric": "feoh_w_density"
+          },
+          {
+            "baseline": 0.2,
+            "candidate": 0.2,
+            "delta": 0.0,
+            "metric": "feoh_w_mass"
+          },
+          {
+            "baseline": 0.2,
+            "candidate": 0.2,
+            "delta": 0.0,
+            "metric": "init_fe2"
+          },
+          {
+            "baseline": 7.56,
+            "candidate": 7.56,
+            "delta": 0.0,
+            "metric": "init_pH"
+          },
+          {
+            "baseline": 629.0,
+            "candidate": 629.0,
+            "delta": 0.0,
+            "metric": "init_so4"
+          },
+          {
+            "baseline": 0.0159,
+            "candidate": 0.0159,
+            "delta": 0.0,
+            "metric": "phi_albite"
+          },
+          {
+            "baseline": 0.023,
+            "candidate": 0.023,
+            "delta": 0.0,
+            "metric": "phi_biotite"
+          },
+          {
+            "baseline": 0.0177,
+            "candidate": 0.0177,
+            "delta": 0.0,
+            "metric": "phi_calcite"
+          },
+          {
+            "baseline": 0.00248,
+            "candidate": 0.00248,
+            "delta": 0.0,
+            "metric": "phi_chalcopyr"
+          },
+          {
+            "baseline": 0.014188679,
+            "candidate": 0.014188679,
+            "delta": 0.0,
+            "metric": "phi_chlorite"
+          },
+          {
+            "baseline": 0.000896,
+            "candidate": 0.000896,
+            "delta": 0.0,
+            "metric": "phi_galena"
+          },
+          {
+            "baseline": 0.00531,
+            "candidate": 0.00531,
+            "delta": 0.0,
+            "metric": "phi_magnesite"
+          },
+          {
+            "baseline": 0.0057,
+            "candidate": 0.0057,
+            "delta": 0.0,
+            "metric": "phi_muscovite"
+          },
+          {
+            "baseline": 0.000861,
+            "candidate": 0.000861,
+            "delta": 0.0,
+            "metric": "phi_pyrite"
+          },
+          {
+            "baseline": 0.000727,
+            "candidate": 0.000727,
+            "delta": 0.0,
+            "metric": "phi_pyrrhot"
+          },
+          {
+            "baseline": 0.00956,
+            "candidate": 0.00956,
+            "delta": 0.0,
+            "metric": "phi_sphalerite"
+          },
+          {
+            "baseline": 4.51220114224845,
+            "candidate": 4.51220114224845,
+            "delta": 0.0,
+            "metric": "vg_alpha"
+          },
+          {
+            "baseline": 0.7513523371792324,
+            "candidate": 0.7578434213407051,
+            "delta": 0.006491084161472704,
+            "metric": "RMSE_pH"
+          },
+          {
+            "baseline": 0.4551433610330118,
+            "candidate": 0.4529856259940614,
+            "delta": -0.0021577350389503924,
+            "metric": "MAE_pH"
+          },
+          {
+            "baseline": -0.197725688950434,
+            "candidate": -0.215687779874212,
+            "delta": -0.017962090923778012,
+            "metric": "Bias_pH"
+          },
+          {
+            "baseline": 5.528571428571428,
+            "candidate": 5.528571428571428,
+            "delta": 0.0,
+            "metric": "Mean_obs_pH"
+          },
+          {
+            "baseline": 5.330845739620995,
+            "candidate": 5.312883648697216,
+            "delta": -0.01796209092377854,
+            "metric": "Mean_model_pH"
+          },
+          {
+            "baseline": 0.002745078515898205,
+            "candidate": 0.002598417028375292,
+            "delta": -0.00014666148752291285,
+            "metric": "RMSE_so4-2"
+          },
+          {
+            "baseline": 0.002406962733846399,
+            "candidate": 0.002306849068570353,
+            "delta": -0.00010011366527604582,
+            "metric": "MAE_so4-2"
+          },
+          {
+            "baseline": -0.002406962733846399,
+            "candidate": -0.002306849068570353,
+            "delta": 0.00010011366527604582,
+            "metric": "Bias_so4-2"
+          },
+          {
+            "baseline": 0.004644914388824444,
+            "candidate": 0.004644914388824444,
+            "delta": 0.0,
+            "metric": "Mean_obs_so4-2"
+          },
+          {
+            "baseline": 0.002237951654978046,
+            "candidate": 0.002338065320254093,
+            "delta": 0.00010011366527604712,
+            "metric": "Mean_model_so4-2"
+          },
+          {
+            "baseline": 0.0002181062609223547,
+            "candidate": 0.0002178724985589641,
+            "delta": -2.337623633905789e-07,
+            "metric": "RMSE_zn+2"
+          },
+          {
+            "baseline": 0.0001125643806729784,
+            "candidate": 0.0001122907746956201,
+            "delta": -2.7360597735830107e-07,
+            "metric": "MAE_zn+2"
+          },
+          {
+            "baseline": -1.563590903133239e-05,
+            "candidate": -1.615442936705699e-05,
+            "delta": -5.185203357245985e-07,
+            "metric": "Bias_zn+2"
+          },
+          {
+            "baseline": 9.637175477149737e-07,
+            "candidate": 9.13081709310302e-07,
+            "delta": -5.063583840467176e-08,
+            "metric": "RMSE_cu+2"
+          },
+          {
+            "baseline": 6.799445535547839e-07,
+            "candidate": 6.269116824063226e-07,
+            "delta": -5.303287114846135e-08,
+            "metric": "MAE_cu+2"
+          },
+          {
+            "baseline": -5.84127575896263e-07,
+            "candidate": -5.123165912502208e-07,
+            "delta": 7.181098464604222e-08,
+            "metric": "Bias_cu+2"
+          },
+          {
+            "baseline": 6.445914199360535e-06,
+            "candidate": 6.489415273863307e-06,
+            "delta": 4.350107450277162e-08,
+            "metric": "RMSE_pb+2"
+          },
+          {
+            "baseline": 5.377129003986701e-06,
+            "candidate": 5.399806493820462e-06,
+            "delta": 2.2677489833760562e-08,
+            "metric": "MAE_pb+2"
+          },
+          {
+            "baseline": 5.060304997737518e-08,
+            "candidate": 6.807697821824866e-08,
+            "delta": 1.7473928240873484e-08,
+            "metric": "Bias_pb+2"
+          },
+          {
+            "baseline": 3.112399324703525e-07,
+            "candidate": 3.304806873664876e-07,
+            "delta": 1.9240754896135064e-08,
+            "metric": "RMSE_cd+2"
+          },
+          {
+            "baseline": 2.2312276085494e-07,
+            "candidate": 2.302562405703304e-07,
+            "delta": 7.133479715390401e-09,
+            "metric": "MAE_cd+2"
+          },
+          {
+            "baseline": -4.029753879261978e-08,
+            "candidate": -3.546072961225856e-08,
+            "delta": 4.836809180361221e-09,
+            "metric": "Bias_cd+2"
+          },
+          {
+            "baseline": 1.975805954728339e-06,
+            "candidate": 2.086349435349414e-06,
+            "delta": 1.1054348062107485e-07,
+            "metric": "RMSE_al+3"
+          },
+          {
+            "baseline": 1.69784357592964e-06,
+            "candidate": 1.816608477434103e-06,
+            "delta": 1.1876490150446305e-07,
+            "metric": "MAE_al+3"
+          },
+          {
+            "baseline": -8.168071119001967e-07,
+            "candidate": -6.682226403029038e-07,
+            "delta": 1.4858447159729284e-07,
+            "metric": "Bias_al+3"
+          },
+          {
+            "baseline": 0.002401617774259232,
+            "candidate": 0.002299258574078515,
+            "delta": -0.00010235920018071684,
+            "metric": "RMSE_ca+2"
+          },
+          {
+            "baseline": 0.002198980694573857,
+            "candidate": 0.002119264798165523,
+            "delta": -7.971589640833401e-05,
+            "metric": "MAE_ca+2"
+          },
+          {
+            "baseline": -0.00179977909206459,
+            "candidate": -0.001720063195656256,
+            "delta": 7.971589640833401e-05,
+            "metric": "Bias_ca+2"
+          },
+          {
+            "baseline": 0.8762841845187216,
+            "candidate": 0.8838545800703383,
+            "delta": 0.00757039555161676,
+            "metric": "NORM_RMSE_pH"
+          },
+          {
+            "baseline": 1.752568369037443,
+            "candidate": 1.767709160140677,
+            "delta": 0.015140791103233964,
+            "metric": "WEIGHTED_RMSE_pH"
+          },
+          {
+            "baseline": 1.062097242899126,
+            "candidate": 1.005352504766708,
+            "delta": -0.05674473813241798,
+            "metric": "NORM_RMSE_so4-2"
+          },
+          {
+            "baseline": 2.124194485798252,
+            "candidate": 2.010705009533416,
+            "delta": -0.11348947626483596,
+            "metric": "WEIGHTED_RMSE_so4-2"
+          },
+          {
+            "baseline": 0.9956334335749819,
+            "candidate": 0.9945663315875427,
+            "delta": -0.0010671019874392007,
+            "metric": "NORM_RMSE_zn+2"
+          },
+          {
+            "baseline": 0.9956334335749819,
+            "candidate": 0.9945663315875427,
+            "delta": -0.0010671019874392007,
+            "metric": "WEIGHTED_RMSE_zn+2"
+          },
+          {
+            "baseline": 0.585524100493086,
+            "candidate": 0.5547593771517845,
+            "delta": -0.030764723341301536,
+            "metric": "NORM_RMSE_cu+2"
+          },
+          {
+            "baseline": 0.585524100493086,
+            "candidate": 0.5547593771517845,
+            "delta": -0.030764723341301536,
+            "metric": "WEIGHTED_RMSE_cu+2"
+          },
+          {
+            "baseline": 0.9886226462741854,
+            "candidate": 0.9952944923553769,
+            "delta": 0.006671846081191535,
+            "metric": "NORM_RMSE_pb+2"
+          },
+          {
+            "baseline": 0.9886226462741854,
+            "candidate": 0.9952944923553769,
+            "delta": 0.006671846081191535,
+            "metric": "WEIGHTED_RMSE_pb+2"
+          },
+          {
+            "baseline": 0.93249167117733,
+            "candidate": 0.9901380134875971,
+            "delta": 0.05764634231026711,
+            "metric": "NORM_RMSE_cd+2"
+          },
+          {
+            "baseline": 0.93249167117733,
+            "candidate": 0.9901380134875971,
+            "delta": 0.05764634231026711,
+            "metric": "WEIGHTED_RMSE_cd+2"
+          },
+          {
+            "baseline": 0.2927736770951402,
+            "candidate": 0.3091539401583606,
+            "delta": 0.016380263063220435,
+            "metric": "NORM_RMSE_al+3"
+          },
+          {
+            "baseline": 0.2927736770951402,
+            "candidate": 0.3091539401583606,
+            "delta": 0.016380263063220435,
+            "metric": "WEIGHTED_RMSE_al+3"
+          },
+          {
+            "baseline": 1.075084225473693,
+            "candidate": 1.029263128284181,
+            "delta": -0.045821097189511883,
+            "metric": "NORM_RMSE_ca+2"
+          },
+          {
+            "baseline": 1.075084225473693,
+            "candidate": 1.029263128284181,
+            "delta": -0.045821097189511883,
+            "metric": "WEIGHTED_RMSE_ca+2"
+          },
+          {
+            "baseline": 8.746892608924114,
+            "candidate": 8.651589452698936,
+            "delta": -0.09530315622517804,
+            "metric": "TOTAL_SCORE_RMSE_COMPONENT"
+          }
+        ],
+        "objective_delta": 0.09530315622517804,
+        "status": "available"
+      },
+      "v14_residual_status": "available"
+    },
+    "direction": "increase",
+    "group": "mineral_kinetics",
+    "parameter": "keff_pyrite",
+    "run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+    "run_status": "success",
+    "scientific_ok": true,
+    "scientific_penalty": 0.0,
+    "valid": true
+  },
+  "optimizer_version": "V14.4.6",
+  "recovery": {},
+  "return_code": 0,
+  "run_artifacts": [
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133\\candidate_config.xlsx",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133\\candidate_input.dat",
+    "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133\\v14_transaction.json"
+  ],
+  "run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092133",
+  "run_status": "success",
+  "schema_version": 1,
+  "selection_reason": "directional_precedence_and_hierarchy_validated",
+  "status": "accepted",
+  "suggestion": {
+    "candidate_id": "ef6aac7823c94949b75863aea0e73d1b",
+    "candidate_type": "single_parameter",
+    "configured_log_range_decades": 6.0,
+    "direction": "increase",
+    "direction_label": "increase",
+    "evidence": "current_best_TOTAL_SCORE=8.746892608924114",
+    "factor_applied": 1.0715193052376064,
+    "factor_requested": 1.0715193052376064,
+    "group": "mineral_kinetics",
+    "initial_factor_effective": 10.0,
+    "initial_factor_requested": null,
+    "initial_range_fraction_requested": null,
+    "initial_search_mode": "automatic_log_range",
+    "initial_search_source": "automatic_positive_log_range",
+    "initial_step_fraction_clamped": false,
+    "initial_step_fraction_resolved": 0.16666666666666666,
+    "interaction_enabled": false,
+    "move_space": "logarithmic",
+    "new_value": 0.004844874232369353,
+    "numeric_change": 0.00032337451819013357,
+    "old_value": 0.004521499714179219,
+    "optimizer_mode": "adaptive_directional_coordinate_search",
+    "optimizer_version": "V14.4.6",
+    "parameter": "keff_pyrite",
+    "parent_best_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092041",
+    "pass_number": 1,
+    "priority": 1000,
+    "priority_local_refinement": false,
+    "priority_refinement_rounds_remaining": 0,
+    "range_normalized": true,
+    "reason": "V14 directional_continue: mineral_kinetics; increase; step=0.005; move_space=logarithmic",
+    "search_phase": "directional_continue",
+    "step_basis": "configured_log_range",
+    "step_fraction_applied": 0.005,
+    "step_fraction_requested": 0.005
+  },
+  "transaction_id": "txn_20260728_092131_ef6aac7823c94949b75863aea0e73d1b",
+  "updated_at": "2026-07-28T09:22:17+03:00"
+}

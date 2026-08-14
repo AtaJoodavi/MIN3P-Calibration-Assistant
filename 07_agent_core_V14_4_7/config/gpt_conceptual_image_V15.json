@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "model": "gpt-image-2",
+  "quality": "medium",
+  "size": "1536x1024",
+  "background_opacity": 0.2
+}

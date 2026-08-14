@@ -1,0 +1,26 @@
+V14.4.6 validation
+==================
+
+Dedicated atomic-write tests:
+  5 passed
+
+Complete V14 regression suite:
+  74 passed
+  0 failures
+
+Standalone verifier:
+  PASS: V14.4.6 robust atomic state writes
+  JSON replacement recovered after 2 simulated WinError 5 failures.
+  Excel replacement recovered after 1 simulated transient lock.
+  Unique temporary files were cleaned after promotion.
+
+Full mixed V14/V15 suite:
+  89 tests total
+  85 passed
+  3 failures + 1 error
+
+The four mixed-suite issues are pre-existing V15 reporting/test mismatches:
+- two tests expect reporter V15.2.1 while package reporter is V15.4.2;
+- one conceptual-model test expects "1D vertical" while current output is "1D vertical column";
+- one V15 scientific-report artifact assertion receives a None path.
+No V14.4.6 calibration regression was introduced.

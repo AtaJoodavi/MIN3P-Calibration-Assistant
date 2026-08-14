@@ -1,0 +1,7 @@
+# Read-only V15.4 scientific campaign review.
+# Set enabled: true and define OPENAI_API_KEY to use GPT in --campaign-review-mode auto/gpt.
+enabled: true
+model: gpt-5.6-terra
+reasoning_effort: medium
+max_output_tokens: 5000
+verbosity: medium

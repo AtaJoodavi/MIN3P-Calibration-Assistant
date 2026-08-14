@@ -1,0 +1,75 @@
+{
+  "title": "HCT2 conceptual hydrogeochemical model",
+  "subtitle": "V15.0 reporting schematic; revise this JSON for paper-specific terminology and layer descriptions.",
+  "layers": [
+    {
+      "name": "Top boundary / infiltration",
+      "height": 0.12,
+      "description": "Rainwater entry and atmospheric gas exchange"
+    },
+    {
+      "name": "Oxidising reactive zone",
+      "height": 0.25,
+      "description": "Sulfide oxidation, acid generation and sulfate release"
+    },
+    {
+      "name": "Neutralisation zone",
+      "height": 0.24,
+      "description": "Carbonate dissolution and pH buffering"
+    },
+    {
+      "name": "CIL layer",
+      "height": 0.20,
+      "description": "FeOH sorption; pre-existing jarosite largely inactive at high pH"
+    },
+    {
+      "name": "Lower drainage / seepage",
+      "height": 0.19,
+      "description": "Downward solute transport and outflow observation"
+    }
+  ],
+  "processes": [
+    {
+      "label": "Rain infiltration",
+      "kind": "water",
+      "x": 0.5,
+      "y": 0.96
+    },
+    {
+      "label": "Oxygen diffusion",
+      "kind": "oxygen",
+      "x": 0.84,
+      "y": 0.82
+    },
+    {
+      "label": "Pyrite oxidation\nacid + SO4 generation",
+      "kind": "oxidation",
+      "x": 0.13,
+      "y": 0.7
+    },
+    {
+      "label": "Carbonate neutralisation\n(calcite / magnesite)",
+      "kind": "neutralisation",
+      "x": 0.13,
+      "y": 0.47
+    },
+    {
+      "label": "FeOH sorption\nreactive surface control",
+      "kind": "sorption",
+      "x": 0.87,
+      "y": 0.31
+    },
+    {
+      "label": "Jarosite\n(largely inactive at high pH)",
+      "kind": "jarosite",
+      "x": 0.13,
+      "y": 0.25
+    }
+  ],
+  "observables": [
+    "pH",
+    "SO4",
+    "metals",
+    "seepage discharge"
+  ]
+}
