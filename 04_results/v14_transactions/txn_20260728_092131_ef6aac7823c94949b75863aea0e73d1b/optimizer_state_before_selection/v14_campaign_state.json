@@ -1,9 +1,0 @@
-{
-  "current_best_score": 8.746892608924114,
-  "current_best_run_folder": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\03_runs\\run_20260728_092041",
-  "current_best_stage": "mineral_kinetics",
-  "best_parameters_file": "C:\\Dev\\MIN3P-AI-Assistant\\06_calibration_projects\\HCT3\\04_results\\best_parameters_V14.xlsx",
-  "baseline_source": "V14_accepted_transactional_candidate",
-  "updated_at": "2026-07-28T09:21:23+03:00",
-  "optimizer_version": "V14.4.6"
-}
