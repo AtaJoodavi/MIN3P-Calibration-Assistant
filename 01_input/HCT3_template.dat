@@ -188,7 +188,6 @@
 
 
 'magnesite'
-!'dolomite-ch'
 
 
 'gibbsite(c)'
@@ -215,14 +214,10 @@
 
 
 
-
-!'define sorption type'
-!'surface-complex'
-
 'redox couples'
 1
 'so4-2' 'hs-1'
-!'fe+2' 'fe+3'  
+
 
 
 
