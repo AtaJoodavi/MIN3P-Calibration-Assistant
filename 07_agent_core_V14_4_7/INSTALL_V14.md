@@ -1,52 +1,65 @@
-# Install / upgrade to V14.4
+# Install / upgrade V14.4.7 sensitivity-first extension
 
-This package is a complete agent-core snapshot based on V14.3.7 with the first
-V14.4 calibration improvement applied.
+This update preserves the existing V14.4.7 transaction, rollback, checkpoint, cache, bound, and directional-search safeguards while adding coverage-first local sensitivity screening.
 
 ## Recommended clean upgrade
 
-1. Preserve the current V14.3.7 folder and calibration results as an archive.
-2. Extract this package as a new folder, for example:
+1. Archive the current agent-core folder and campaign results before replacing files.
+2. Replace only the files supplied in this update package.
+3. Keep the project folders (`01_input`, `03_runs`, `04_results`, `05_reports`, and `database`) in their existing locations.
+4. For a scientifically clean comparison, start a new calibration campaign from the intended initial parameter set rather than mixing pre-screening and sensitivity-first search trajectories in one final publication campaign.
 
-   `07_agent_core_V14_4`
+## Sensitivity-first initialization
 
-3. Keep the project folders (`00_project_info`, `01_input`, `03_runs`,
-   `04_results`, `05_reports`, `06_knowledge`, `database`) outside the agent-core
-   folder exactly as before.
-4. Verify the new stepping logic before starting MIN3P:
+When at least five parameters are active, a new automatic campaign first evaluates one diagnostic perturbation for every active parameter against the same accepted baseline.
+
+Screening candidates are not committed as accepted states. Their local response is summarized as:
+
+```text
+S = |J_candidate - J_baseline| / fractional_step
+```
+
+After coverage is complete, ordinary calibration begins with the active parameter having the largest finite screening sensitivity.
+
+Default internal settings are:
+
+```text
+coverage_first_min_active_parameters = 5
+sensitivity_guided_after_coverage = 1
+```
+
+No new command-line option is required.
+
+## Verify before running MIN3P
+
+Run:
+
+```powershell
+python .\verify_v14_4_7_sensitivity_first.py
+```
+
+Expected output:
+
+```text
+PASS: coverage-first screening and sensitivity-guided start are working.
+```
+
+Then run the existing stepping verification if desired:
 
 ```powershell
 python .\verify_v14_4_range_normalized_steps.py
 ```
 
-5. Run the V14 regression tests when `pytest` is available:
+## Normal calibration command
 
 ```powershell
-python -m pytest -q tests\test_v14*.py
+python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 20 --max-changes 1
 ```
-
-## New V14.4 setting
-
-`config/calibration_rules.yaml` contains:
-
-```yaml
-log_range_step_scaling_enabled: true
-```
-
-To override it for one project, add the same setting to the
-`agent_config.xlsx / optimizer_v13` sheet. Explicit Excel values take
-precedence over YAML defaults.
 
 ## Existing campaigns
 
-V14.4 remains able to read the existing V14 step-state format. However, because
-the candidate step interpretation changed, do not mix V14.3.7 and V14.4 runs in
-the same final publication campaign when you want a clean algorithmic record.
-Archive the old campaign and start a fresh V14.4 calibration run from the chosen
-initial parameter set.
+The optimizer state contains coverage-screening fields, including screening status and learned sensitivity. To evaluate the new initialization logic cleanly, use a fresh campaign state. Existing accepted parameter values can still be used as the chosen starting model.
 
-## Preserved safety behavior
+## Configuration note
 
-V14.4 keeps the V14.3.7 transaction/recovery machinery, direction-pair
-precedence, bounds checks, freeze/reactivation framework, interaction-pair
-safety, deterministic acceptance rules, and GPT advisory governance.
+`config/calibration_rules.yaml` does not need to be changed for this patch. The sensitivity-first defaults are defined in the V14 optimizer and can be overridden through the existing optimizer configuration interface where supported.

@@ -1,47 +1,32 @@
 # MIN3P-Calibration-Assistant
 
-MIN3P-Calibration-Assistant is a deterministic calibration and sensitivity-analysis framework for MIN3P reactive transport models. It automates generation of candidate parameter sets, MIN3P execution, comparison with observations, acceptance/rejection decisions, rollback, parameter-state tracking, sensitivity analysis, and scientific reporting.
+MIN3P-Calibration-Assistant is a deterministic calibration and sensitivity-analysis framework for MIN3P reactive transport models. It automates candidate generation, MIN3P execution, comparison with observations, acceptance/rejection decisions, rollback, parameter-state tracking, local sensitivity screening, checkpointing, and scientific reporting.
 
 The code is designed so that every tested parameter change is recorded and the calibration history can be reconstructed.
 
 MIN3P-Calibration-Assistant was developed by Ata Joodavi at the Geological Survey of Finland (GTK).
-ata.joodavi@gtk.fi
 
-> ** A licensed MIN3P executable and the required thermodynamic/database files must be supplied separately by the user.
-
----
+> A licensed MIN3P executable and the required thermodynamic/database files must be supplied separately by the user.
 
 ## 1. Project structure
 
-A calibration project should have the following structure:
-
 ```text
 MyProject/
-│
-├── 00_project_info/                 # Optional project notes
 ├── 01_input/
-│   ├── MyProject_template.dat       # MIN3P template containing {{parameter}} placeholders
-│   ├── agent_config.xlsx            # Calibration configuration
-│   └── observed data for min3p.xlsx # Observations used in the objective function
-│
-├── 03_runs/                         # Created/used for individual MIN3P runs
-├── 04_results/                      # Calibration state, history, ranking and audit files
-├── 05_reports/                      # Calibration and scientific reports
-├── 06_knowledge/                    # Optional supporting information
-├── database/                        # MIN3P database files
-│
+│   ├── MyProject_template.dat
+│   ├── agent_config.xlsx
+│   └── observed data for min3p.xlsx
+├── 03_runs/
+├── 04_results/
+├── 05_reports/
+├── database/
 └── 07_agent_core_V14_4_7/
     ├── min3p_ai_pipeline_V14.py
-    ├── plotsV46.py
     ├── generate_v15_scientific_report.py
     ├── generate_v15_explainability.py
     ├── modules/
     └── config/
 ```
-
-The pipeline automatically creates missing output directories such as `03_runs`, `04_results`, `05_reports`, and `06_knowledge`.
-
----
 
 ## 2. Software requirements
 
@@ -55,325 +40,132 @@ Recommended environment:
 Install the main Python packages:
 
 ```powershell
-python -m pip install pandas numpy openpyxl matplotlib pyyaml
+python -m pip install pandas numpy openpyxl matplotlib pyyaml pytest
 ```
 
-Optional packages:
+## 3. Configure a calibration project
 
-```powershell
-python -m pip install openai pytest
-```
-
-`openai` is required only when GPT-based scientific supervision or GPT campaign review is enabled. The calibration engine can run without GPT.
-
-### MIN3P executable
-
-Place the MIN3P executable in one of these locations:
-
-```text
-MyProject/
-MyProject/01_input/
-MyProject/database/
-MyProject/07_agent_core_V14_4_7/
-```
-
-The runner searches for filenames such as:
-
-```text
-MIN3P-HPC-V*.exe
-MIN3P*.exe
-min3p*.exe
-```
-
----
-
-# 3. Creating a new calibration project
-
-The two main configuration files are (in MIN3P-Calibration-Assistant\01_input):
-
-1. `*_template.dat`
-2. `agent_config.xlsx`
-
-An observation workbook is also required when model results are compared with measurements.
-
-## Step 1 — Start from a working MIN3P model
-
-First create and test a normal MIN3P `.dat` file manually. The model should run successfully before automated calibration is started.
-
-For example:
-
-```text
-MyProject.dat
-```
-
-Make a copy and rename it:
-
-```text
-MyProject_template.dat
-```
-
-Do not use the calibration assistant to repair a MIN3P model that does not already run successfully.
-
----
-
-## Step 2 — Add placeholders to `*_template.dat`
-
-Replace numerical values that may be calibrated with parameter placeholders using the format:
-
-```text
-{{parameter_name}}
-```
-
-Example:
-
-Original MIN3P value:
-
-```text
-0.004534532383
-```
-
-Template value:
+Start from a MIN3P model that already runs successfully. Create a template copy and replace calibratable values with placeholders such as:
 
 ```text
 {{keff_pyrite}}
-```
-
-Another example:
-
-```text
+{{keff_calcite}}
 {{porosity}}
 {{Kz}}
 {{vg_alpha}}
 {{vg_n}}
-{{keff_calcite}}
 ```
 
-The parameter name inside `{{ }}` must exactly match the name in the `parameters` sheet of `agent_config.xlsx`.
+Each placeholder must have a matching row in the `parameters` sheet of `agent_config.xlsx`.
 
-**Important:** every active placeholder in the template must have a matching row in `agent_config.xlsx`. If an unreplaced placeholder remains in the generated DAT, the pipeline stops before MIN3P is run.
-
-Parameters may exist in `agent_config.xlsx` without appearing in the template; these are ignored by the DAT builder until they are used in the template.
-
----
-
-# 4. Configure `agent_config.xlsx` (MIN3P-Calibration-Assistant\01_input)
-
-The supplied HCT3 example contains the main sheets needed by the calibration workflow.
-
-## 4.1 `parameters` sheet
-
-Typical columns are:
+Typical parameter columns are:
 
 | Column | Purpose |
 |---|---|
-| `parameter` | Must match the placeholder in the template DAT |
-| `status` | `active`, `inactive`, or user-controlled frozen state |
-| `value` | Current/baseline parameter value |
-| `min` | Lower allowed bound |
-| `max` | Upper allowed bound |
-| `sensitivity_mode` | How local perturbations are defined |
-| `sensitivity_multiplier` | Perturbation setting used by sensitivity tools |
-| `group` | Scientific/process group for the parameter |
+| `parameter` | Parameter/placeholder name |
+| `status` | `active` or inactive/frozen state |
+| `value` | Starting value |
+| `min` | Lower bound |
+| `max` | Upper bound |
+| `sensitivity_mode` | Perturbation mode |
+| `sensitivity_multiplier` | Perturbation setting |
+| `group` | Process/calibration group |
 
-Example:
+The `species` sheet defines active observation groups and weights. The `model_files` sheet identifies the template, generated DAT, observation workbook, executable, and related model files.
 
-| parameter | status | value | min | max | sensitivity_mode | sensitivity_multiplier | group |
-|---|---|---:|---:|---:|---|---:|---|
-| `keff_pyrite` | active | 0.00453 | 1e-6 | 1 | multiplier | 0.25 | sulfide |
-| `keff_calcite` | active | 1.43e-4 | 1e-10 | 0.01 | multiplier | 0.25 | buffering |
-| `porosity` | active | 0.40 | 0.30 | 0.50 | multiplier | 0.25 | flow |
+## 4. Coverage-first sensitivity screening
 
-`active` parameters are eligible for calibration. Parameters that should remain fixed should be marked `inactive` or otherwise excluded according to the project configuration.
+For campaigns with at least five active parameters, the normal automatic workflow starts with a coverage-first local sensitivity screening phase.
 
-The values in this sheet define the starting model for a new campaign. Keep an archived copy of the initial `agent_config.xlsx` before calibration if the initial parameter set must be preserved separately.
+Each active parameter receives one initial diagnostic perturbation before ordinary continuation/refinement is allowed to dominate the search. Screening candidates are evaluated against the same accepted baseline and are not committed as accepted states.
 
----
-
-## 4.2 `species` sheet
-
-This sheet defines the observation groups used in the objective function.
-
-Typical columns are:
-
-| Column | Purpose |
-|---|---|
-| `species` | MIN3P species or `pH` |
-| `active` | Include/exclude the species from calibration |
-| `weight` | Relative contribution to the objective |
-| `phase` | Usually `aqueous` for the current workflow |
-
-Example:
-
-| species | active | weight | phase |
-|---|---|---:|---|
-| pH | yes | 2 | aqueous |
-| so4-2 | yes | 2 | aqueous |
-| zn+2 | yes | 1 | aqueous |
-| cu+2 | yes | 1 | aqueous |
-
-Only active species are included in model/observation evaluation.
-
----
-
-## 4.3 `model_files` sheet
-
-This sheet connects the code to the project files.
-
-Example:
-
-| key | value |
-|---|---|
-| `template_file` | `MyProject_template.dat` |
-| `input_file` | `MyProject.dat` |
-| `observed_file` | `observed data for min3p.xlsx` |
-| `exe_file` | `MIN3P-HPC-V2.6.4.903.exe` |
-| `timeseries_file` | `model_vs_observed_timeseries.xlsx` |
-
-The most important entries are:
-
-- `template_file`: DAT file containing placeholders
-- `input_file`: generated MIN3P DAT file
-- `observed_file`: observation workbook
-
-The names must match the files used by the project. The supplied HCT3 `agent_config.xlsx` currently defines `input_file = HCT.dat`; if you rename the generated model to `HCT3.dat`, update this cell as well.
-
----
-
-# 5. Observation data
-
-The observed-data workbook should normally be stored in:
+The local screening score is:
 
 ```text
-01_input/observed data for min3p.xlsx
+S = |J_candidate - J_baseline| / fractional_step
 ```
 
-A `day` column is required.
+where `J` is the composite objective score.
 
-Example:
+After all active parameters have been screened, ordinary deterministic calibration starts from the parameter with the largest finite screening sensitivity. The learned sensitivity remains available as a ranking signal during subsequent search.
 
-| day | pH | so4-2 | zn+2 | cu+2 |
-|---:|---:|---:|---:|---:|
-| 0 | 7.56 | 0.00655 | 0.000898 | 3.02e-6 |
-| 7 | 7.30 | 0.00955 | 0.000036 | 1.01e-6 |
-| 14 | 4.70 | 0.00625 | 0.000030 | 6.69e-7 |
+Default internal settings are:
 
-For the current evaluator:
-
-- pH is unitless.
-- Dissolved species should be supplied in units consistent with the MIN3P concentration outputs used by the evaluator (normally mol/L water).
-- Missing values can be left blank/NaN.
-- Only species marked active in `agent_config.xlsx` contribute to the objective.
-
-The code interpolates model results to the observation times before calculating RMSE, MAE, and bias.
-
----
-
-# 6. Check the project before calibration
-
-Open PowerShell and move to the agent-core folder:
-
-```powershell
-cd C:\Dev\MIN3P-Calibration-Assistant\07_agent_core_V14_4_7
+```text
+coverage_first_min_active_parameters = 5
+sensitivity_guided_after_coverage = 1
 ```
 
-Run the preflight check:
+These defaults can be overridden through the existing optimizer configuration where supported. No separate sensitivity command is required.
+
+## 5. Preflight
+
+From the agent-core folder:
 
 ```powershell
 python .\min3p_ai_pipeline_V14.py --mode preflight
 ```
 
-Review the output and confirm that:
+Confirm that the template, observation file, MIN3P executable, required modules, and transaction state are valid.
 
-- `agent_config.xlsx` is found;
-- required V14 modules are available;
-- no unresolved transaction exists;
-- the project is ready for V14 auto mode.
-
-You can also preview automatic initial search scales without running MIN3P:
+You can preview automatic initial search scales without running MIN3P:
 
 ```powershell
 python .\preview_v14_4_4_initial_scales.py --active-only
 ```
 
----
+## 6. Run calibration
 
-# 7. Run the calibration
-
-For a small test campaign:
+Small test campaign:
 
 ```powershell
-python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 5 --max-changes 1 --disable-gpt
+python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 5 --max-changes 1
 ```
 
-For a larger campaign:
+Larger campaign:
 
 ```powershell
-python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 20 --max-changes 1 --disable-gpt
+python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 20 --max-changes 1
 ```
 
-The campaign can be continued by running the same command again. Optimizer state and audit files in `04_results` preserve the previous progress.
+`--max-physical-runs` limits new MIN3P executions. `--max-candidates` limits candidate cycles and includes cache hits. `--max-runs` remains a backward-compatible alias for `--max-candidates`.
 
-### Candidate limit versus physical-run limit
-
-`--max-physical-runs` is recommended when you want to control the number of new MIN3P simulations.
-
-```powershell
---max-physical-runs 20
-```
-
-`--max-candidates` counts optimizer candidate cycles, including cache hits:
-
-```powershell
-python .\min3p_ai_pipeline_V14.py --mode auto --max-candidates 20 --max-changes 1
-```
-
-`--max-runs` is retained as a backward-compatible alias for `--max-candidates`.
-
----
-
-# 8. What happens during one calibration candidate
-
-For each candidate, the framework approximately follows this sequence:
+## 7. Candidate workflow
 
 ```text
-Read accepted agent_config.xlsx
+Read accepted configuration
         ↓
-Select one eligible parameter
+If new campaign: perform coverage-first screening
         ↓
-Generate increase/decrease candidate
+Rank screened parameters by local objective sensitivity
         ↓
-Create isolated candidate configuration
+Select one eligible parameter and direction
         ↓
-Build DAT from *_template.dat
+Generate isolated candidate
         ↓
-Run MIN3P
+Check for valid cached evaluation
         ↓
-Post-process GBT/GBM outputs
+Run MIN3P if required
         ↓
-Compare simulation with observations
+Compare model output with observations
         ↓
-Calculate composite objective
+Calculate objective and diagnostics
         ↓
-Apply deterministic acceptance rules
+Apply deterministic decision rules
         ↓
-Accept candidate OR restore previous accepted state
+Accept candidate or restore accepted state
         ↓
-Write audit and optimizer-state files
+Write audit and workflow-state files
 ```
 
-Candidate preparation does not directly overwrite the accepted configuration. Rejected or invalid candidates are restored through the transaction/rollback system.
+Rejected or invalid candidates cannot replace the accepted model state.
 
----
+## 8. Main outputs
 
-# 9. Main output files
-
-Important results are written to `04_results`.
-
-Typical files include:
+Typical files in `04_results` include:
 
 ```text
 run_ranking.xlsx
-optimization_history.xlsx
 optimization_history_V14.xlsx
 calibration_decision_log.xlsx
 best_parameters_V14.xlsx
@@ -384,39 +176,17 @@ v14_parameter_runtime_state.json
 v14_step_size_state.json
 ```
 
-Individual simulations are stored under:
+Individual physical simulations are stored under `03_runs/run_YYYYMMDD_HHMMSS/`.
 
-```text
-03_runs/run_YYYYMMDD_HHMMSS/
-```
-
-The ranking workbook lists successful runs and their objective values.
-
----
-
-# 10. Stop and resume safely
-
-Request a safe stop:
+## 9. Stop, resume, and recover
 
 ```powershell
 python .\min3p_ai_pipeline_V14.py --mode request-safe-stop
-```
-
-Clear the safe-stop flag before continuing:
-
-```powershell
 python .\min3p_ai_pipeline_V14.py --mode clear-safe-stop
-```
-
-Recover interrupted transactions when required:
-
-```powershell
 python .\min3p_ai_pipeline_V14.py --mode recover-interrupted
 ```
 
----
-
-# 11. Generate calibration reports
+## 10. Reports
 
 Generate the V14 campaign report:
 
@@ -424,19 +194,13 @@ Generate the V14 campaign report:
 python .\min3p_ai_pipeline_V14.py --mode report
 ```
 
-Generate the full post-processing package for the current V14 best run without rerunning the MIN3P solver:
+Post-process the current best run without rerunning MIN3P:
 
 ```powershell
 python .\min3p_ai_pipeline_V14.py --mode postprocess-best
 ```
 
----
-
-# 12. Generate the V15 scientific report
-
-After the calibration campaign, generate the scientific report using the generated or selected project DAT file.
-
-Example:
+Generate the deterministic V15 scientific report:
 
 ```powershell
 python .\generate_v15_scientific_report.py `
@@ -446,79 +210,25 @@ python .\generate_v15_scientific_report.py `
   --campaign-review-mode deterministic
 ```
 
-For HCT3, use the exact non-template DAT filename that exists in `01_input` (the current uploaded `agent_config.xlsx` uses `HCT.dat` unless you change it):
-
-```powershell
-python .\generate_v15_scientific_report.py `
-  --dat-file ..\01_input\HCT.dat `
-  --conceptual-image-mode deterministic `
-  --conceptual-detail paper `
-  --campaign-review-mode auto
-```
-
-The reporter produces, among other files:
-
-```text
-05_reports/V15_scientific_report/
-├── V15_calibration_story_report.html
-├── V15_calibration_story_report.md
-├── campaign_analysis_V15_4.xlsx
-├── campaign_review_V15_4.md
-├── figures/
-│   ├── 01_conceptual_hydrogeochemical_model.png
-│   ├── 02_calibration_decision_timeline.png
-│   └── 05_parameter_sensitivity_summary.png
-└── tables/
-    ├── parameter_trial_effects.xlsx
-    ├── parameter_sensitivity_and_calibration_evidence.xlsx
-    └── calibration_group_overview.xlsx
-```
-
-The scientific-report command is read-only with respect to the protected V14 calibration state.
-
----
-
-# 13. Generate candidate explainability outputs
-
-Run:
+Generate candidate-level explainability outputs:
 
 ```powershell
 python .\generate_v15_explainability.py
 ```
 
-This creates candidate-level explanations showing why each parameter and direction was tested and what decision followed.
+## 11. Verify the sensitivity-first extension
 
-Typical outputs include:
+```powershell
+python .\verify_v14_4_7_sensitivity_first.py
+```
+
+Expected result:
 
 ```text
-05_reports/V15_scientific_report/explainability/
-├── candidate_explanations.json
-├── candidate_explanation.xlsx
-└── explainability_summary.xlsx
+PASS: coverage-first screening and sensitivity-guided start are working.
 ```
----
 
-# 14. Creating another project from the HCT3 example
-
-A simple way to start another model is:
-
-1. Copy the project directory to a new project folder.
-2. Delete/archive previous `03_runs`, `04_results`, and `05_reports` campaign outputs.
-3. Put the new working MIN3P model in `01_input`.
-4. Create `NewProject_template.dat` from that model.
-5. Replace calibratable values with `{{parameter_name}}` placeholders.
-6. Copy and edit `agent_config.xlsx`.
-7. Make sure every template placeholder has a matching `parameters` row.
-8. Set `template_file`, `input_file`, and `observed_file` in the `model_files` sheet.
-9. Add the new observations workbook with a valid `day` column.
-10. Confirm the MIN3P executable and database are available.
-11. Run `--mode preflight`.
-12. Start with a small `--max-physical-runs 5` calibration test.
-13. Inspect `run_ranking.xlsx`, `calibration_decision_log.xlsx`, and the generated plots before starting a long campaign.
-
----
-
-# 15. Reproducibility notes
+## 12. Reproducibility
 
 For a publication/reproducibility package, preserve at least:
 
@@ -532,24 +242,7 @@ optimization_history_V14.xlsx
 calibration_decision_log.xlsx
 best_parameters_V14.xlsx
 parameter-sensitivity outputs
-source code version/tag
+source-code version/tag
 ```
 
 Do not publish API keys, `.env` files, confidential datasets, temporary files, Python cache files, or third-party software that cannot legally be redistributed.
-
----
-
-# 16. Current development status
-
-This repository is research software developed for automated calibration and scientific audit of MIN3P reactive transport models. Calibration results should be interpreted together with the underlying conceptual model, parameter bounds, observation weights, and model limitations. Automated calibration does not eliminate conceptual-model uncertainty or provide formal parameter uncertainty quantification by itself.
-
----
-
-## Citation
-
-A formal software citation and DOI can be added here when the publication release is archived.
-
-```text
-Joodavi, A. et al. MIN3P-Calibration-Assistant, version X.X.
-```
-

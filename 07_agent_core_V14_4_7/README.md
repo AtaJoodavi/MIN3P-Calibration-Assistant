@@ -159,7 +159,7 @@ No extra command is required; this behavior is part of `--mode auto`.
 ## Run calibration
 
 ```powershell
-python .\min3p_ai_pipeline_V14.py --mode auto --max-runs 100 --max-changes 1
+python .\min3p_ai_pipeline_V14.py --mode auto --max-physical-runs 20 --max-changes 1
 ```
 
 ## Verify V14.4 stepping
@@ -184,7 +184,7 @@ python .\generate_v15_scientific_report.py `
   --dat-file ..\01_input\HCT.dat `
   --conceptual-image-mode deterministic `
   --conceptual-detail paper `
-  --campaign-review-mode auto
+  --campaign-review-mode deterministic
 ```
 
 See `V14_4_CHANGELOG.md` and `V14_4_DEVELOPMENT_PLAN.md` for the calibration
