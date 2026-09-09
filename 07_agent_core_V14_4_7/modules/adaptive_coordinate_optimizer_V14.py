@@ -82,6 +82,9 @@ class OptimizerSettingsV14:
     # This is code-controlled, not Excel-controlled. ``max_passes`` remains a
     # hard upper cap rather than a command to repeat every parameter.
     require_accepted_improvement_for_additional_pass: bool = True
+    # Coverage-first local sensitivity screening.
+    coverage_first_min_active_parameters: int = 5
+    sensitivity_guided_after_coverage: int = 1
 
 
 class AdaptiveCoordinateOptimizerV14:
@@ -123,7 +126,10 @@ class AdaptiveCoordinateOptimizerV14:
             raw = as_float(values.get(field), getattr(settings, field))
             if raw is None:
                 continue
-            if field.startswith(("max_", "reopen_", "reactivation_", "exhausted_", "local_futility_min_")):
+            if (
+                field.startswith(("max_", "reopen_", "reactivation_", "exhausted_", "local_futility_min_"))
+                or field in {"coverage_first_min_active_parameters", "sensitivity_guided_after_coverage"}
+            ):
                 setattr(settings, field, int(raw))
             else:
                 setattr(settings, field, float(raw))
@@ -132,6 +138,10 @@ class AdaptiveCoordinateOptimizerV14:
         settings.step_growth_factor = max(settings.step_growth_factor, 1.0)
         settings.step_shrink_factor = min(max(settings.step_shrink_factor, 1e-12), 1.0)
         settings.max_passes = max(int(settings.max_passes), 1)
+        settings.coverage_first_min_active_parameters = max(
+            int(settings.coverage_first_min_active_parameters), 1
+        )
+        settings.sensitivity_guided_after_coverage = int(bool(settings.sensitivity_guided_after_coverage))
         settings.local_futility_min_non_neutral_failed_pairs = max(
             int(settings.local_futility_min_non_neutral_failed_pairs), 1
         )
@@ -327,6 +337,11 @@ class AdaptiveCoordinateOptimizerV14:
             "invalid_count": 0,
             "accepted_improvement_count": 0,
             "sensitivity_score": None,
+            "coverage_tested": False,
+            "coverage_sensitivity_score": None,
+            "coverage_test_direction": "",
+            "coverage_test_objective": None,
+            "pending_screening_only": False,
             "last_update": now(),
         }
         priority_refinement_column_missing = "priority_refinement_rounds_remaining" not in memory.columns
@@ -360,7 +375,12 @@ class AdaptiveCoordinateOptimizerV14:
             "futility_pair_objective_rejection_count",
         ]:
             memory[column] = pd.to_numeric(memory[column], errors="coerce").fillna(0).astype(int)
-        for column in ["futility_pair_blocked", "futility_history_hydrated"]:
+        for column in [
+            "futility_pair_blocked",
+            "futility_history_hydrated",
+            "coverage_tested",
+            "pending_screening_only",
+        ]:
             memory[column] = memory[column].map(as_bool)
         # Empty Excel-origin columns with only None values are inferred as
         # float64 by pandas.  These fields later receive identifiers and labels,
@@ -370,7 +390,8 @@ class AdaptiveCoordinateOptimizerV14:
             "initial_search_mode", "initial_search_source",
             "direction_queue", "continuation_direction", "pending_candidate_id",
             "pending_direction", "pending_parent_best_run_folder", "last_completion_at",
-            "reopened_after_parameter", "local_futility_reason", "last_update",
+            "reopened_after_parameter", "local_futility_reason",
+            "coverage_test_direction", "last_update",
         ]:
             memory[column] = memory[column].astype(object)
 
@@ -437,6 +458,11 @@ class AdaptiveCoordinateOptimizerV14:
                 "invalid_count": 0,
                 "accepted_improvement_count": 0,
                 "sensitivity_score": None,
+                "coverage_tested": False,
+                "coverage_sensitivity_score": None,
+                "coverage_test_direction": "",
+                "coverage_test_objective": None,
+                "pending_screening_only": False,
                 "last_update": now(),
             })
         if additions:
@@ -601,6 +627,83 @@ class AdaptiveCoordinateOptimizerV14:
     # ------------------------------------------------------------------
     # Selection order and V13.5 directional safety invariants
     # ------------------------------------------------------------------
+
+    def _coverage_active_mask(self, memory: pd.DataFrame) -> pd.Series:
+        """Return user-active parameters participating in the initial screen."""
+        user_active = memory.get(
+            "user_status", pd.Series("active", index=memory.index, dtype=object)
+        ).astype(str).str.strip().str.casefold().isin(VALID_USER_ACTIVE)
+        not_inactive = ~memory.get(
+            "status", pd.Series("", index=memory.index, dtype=object)
+        ).astype(str).eq("inactive")
+        return user_active & not_inactive
+
+    def _coverage_first_enabled(self, memory: pd.DataFrame) -> bool:
+        return int(self._coverage_active_mask(memory).sum()) >= int(
+            self.settings.coverage_first_min_active_parameters
+        )
+
+    def _coverage_pending(self, memory: pd.DataFrame) -> pd.DataFrame:
+        """Active parameters that have not yet received a screening perturbation."""
+        if not self._coverage_first_enabled(memory):
+            return memory.iloc[0:0].copy()
+        tested = memory.get(
+            "coverage_tested", pd.Series(False, index=memory.index, dtype=bool)
+        ).map(as_bool)
+        pending = memory[self._coverage_active_mask(memory) & ~tested].copy()
+        if pending.empty:
+            return pending
+        return pending[pending.apply(self._is_selectable, axis=1)].copy()
+
+    @staticmethod
+    def _coverage_sensitivity(frame: pd.DataFrame) -> pd.Series:
+        coverage = pd.to_numeric(
+            frame.get(
+                "coverage_sensitivity_score",
+                pd.Series(float("nan"), index=frame.index, dtype=float),
+            ),
+            errors="coerce",
+        )
+        ordinary = pd.to_numeric(
+            frame.get(
+                "sensitivity_score",
+                pd.Series(float("nan"), index=frame.index, dtype=float),
+            ),
+            errors="coerce",
+        )
+        return coverage.where(coverage.notna(), ordinary).fillna(-1.0)
+
+    def _record_coverage_completion_if_needed(
+        self, memory: pd.DataFrame, state: dict[str, Any]
+    ) -> None:
+        if not self._coverage_first_enabled(memory):
+            return
+        if not self._coverage_pending(memory).empty:
+            return
+        if as_bool(state.get("coverage_first_complete"), False):
+            return
+        ranked = memory[self._coverage_active_mask(memory)].copy()
+        ranked["_sens"] = self._coverage_sensitivity(ranked)
+        ranked = ranked.sort_values(
+            ["_sens", "priority", "parameter"], ascending=[False, True, True]
+        )
+        state["coverage_first_complete"] = True
+        state["coverage_priority_started"] = False
+        state["coverage_first_completed_at"] = now()
+        state["coverage_most_sensitive_parameter"] = (
+            str(ranked.iloc[0]["parameter"]) if not ranked.empty else ""
+        )
+        state["coverage_most_sensitive_score"] = (
+            as_float(ranked.iloc[0]["_sens"]) if not ranked.empty else None
+        )
+        self._event(
+            {
+                "action": "coverage_first_complete",
+                "active_parameter_count": int(self._coverage_active_mask(memory).sum()),
+                "most_sensitive_parameter": state["coverage_most_sensitive_parameter"],
+                "most_sensitive_score": state["coverage_most_sensitive_score"],
+            }
+        )
 
     def _direction_family_pending(self, row: pd.Series) -> bool:
         status = str(row.get("status", ""))
@@ -771,6 +874,50 @@ class AdaptiveCoordinateOptimizerV14:
             memory, state, keep = self._advance_stage(memory, state)
             return (None, memory, state) if not keep else self._candidate_index(memory, state)
 
+        # Initial coverage-first screening: one perturbation for each active
+        # parameter before ordinary continuation/refinement is allowed.
+        uncovered = self._coverage_pending(memory)
+        if not uncovered.empty:
+            uncovered["_step"] = pd.to_numeric(
+                uncovered.get("step_fraction"), errors="coerce"
+            ).fillna(self.settings.initial_step_fraction)
+            selected = uncovered.sort_values(
+                ["group_order", "priority", "_step", "last_update", "parameter"],
+                ascending=[True, True, False, True, True],
+            ).index[0]
+            state["coverage_first_complete"] = False
+            state["coverage_priority_started"] = False
+            return int(selected), memory, state
+
+        self._record_coverage_completion_if_needed(memory, state)
+
+        # Once screening is complete, begin calibration from the parameter with
+        # the largest local objective response.
+        if (
+            self._coverage_first_enabled(memory)
+            and int(self.settings.sensitivity_guided_after_coverage)
+            and as_bool(state.get("coverage_first_complete"), False)
+            and not as_bool(state.get("coverage_priority_started"), False)
+        ):
+            ranked = available.copy()
+            ranked["_sens"] = self._coverage_sensitivity(ranked)
+            ranked = ranked[ranked["_sens"].gt(-1.0)].copy()
+            if not ranked.empty:
+                selected = ranked.sort_values(
+                    ["_sens", "priority", "last_update", "parameter"],
+                    ascending=[False, True, True, True],
+                ).index[0]
+                state["coverage_priority_started"] = True
+                state["coverage_priority_parameter"] = str(memory.at[selected, "parameter"])
+                self._event(
+                    {
+                        "action": "start_sensitivity_guided_after_coverage",
+                        "parameter": state["coverage_priority_parameter"],
+                        "sensitivity_score": as_float(ranked.at[selected, "_sens"]),
+                    }
+                )
+                return int(selected), memory, state
+
         # Priority 1 (hard invariant): no different parameter can interrupt an
         # incomplete individual direction family, regardless of group.
         pending_family = available[available.apply(self._direction_family_pending, axis=1)].copy()
@@ -842,9 +989,7 @@ class AdaptiveCoordinateOptimizerV14:
             ready["_round"] = pd.to_numeric(
                 ready.get("refinement_round"), errors="coerce"
             ).fillna(0).astype(int)
-            ready["_sens"] = pd.to_numeric(
-                ready.get("sensitivity_score"), errors="coerce"
-            ).fillna(-1.0)
+            ready["_sens"] = self._coverage_sensitivity(ready)
             ready["_gpt_rank"] = 1
 
             advice = self._gpt_advisory or {}
@@ -868,17 +1013,22 @@ class AdaptiveCoordinateOptimizerV14:
                     "_gpt_rank",
                 ] = 0
 
-            selected = ready.sort_values(
-                ["_step", "_gpt_rank", "priority", "_round", "_sens", "last_update", "parameter"],
-                ascending=[False, True, True, True, False, True, True],
-            ).index[0]
+            if (
+                self._coverage_first_enabled(memory)
+                and int(self.settings.sensitivity_guided_after_coverage)
+                and as_bool(state.get("coverage_first_complete"), False)
+            ):
+                sort_columns = ["_sens", "_step", "_gpt_rank", "priority", "_round", "last_update", "parameter"]
+                sort_ascending = [False, False, True, True, True, True, True]
+            else:
+                sort_columns = ["_step", "_gpt_rank", "priority", "_round", "_sens", "last_update", "parameter"]
+                sort_ascending = [False, True, True, True, False, True, True]
+            selected = ready.sort_values(sort_columns, ascending=sort_ascending).index[0]
             return int(selected), memory, state
 
         # Fallback for any future ready state not explicitly listed above.
         # GPT remains advisory only inside this already legal fallback tier.
-        candidates["_sens"] = pd.to_numeric(
-            candidates.get("sensitivity_score"), errors="coerce"
-        ).fillna(-1.0)
+        candidates["_sens"] = self._coverage_sensitivity(candidates)
         candidates["_gpt_rank"] = 1
         advice = self._gpt_advisory or {}
         suggested = (
@@ -1635,6 +1785,11 @@ class AdaptiveCoordinateOptimizerV14:
         memory.at[idx, "pending_new_value"] = move["new_value"]
         memory.at[idx, "pending_factor_applied"] = move["factor_applied"]
         memory.at[idx, "pending_parent_best_run_folder"] = str(state.get("current_best_run_folder", ""))
+        screening_only = bool(
+            self._coverage_first_enabled(memory)
+            and not as_bool(memory.at[idx, "coverage_tested"], False)
+        )
+        memory.at[idx, "pending_screening_only"] = screening_only
         memory.at[idx, "status"] = f"test_{direction}"
         memory.at[idx, "last_update"] = now()
         memory.at[idx, "step_fraction"] = step
@@ -1650,6 +1805,7 @@ class AdaptiveCoordinateOptimizerV14:
             "last_parameter": parameter,
             "last_direction": direction,
             "last_step_fraction": step,
+            "pending_screening_only": screening_only,
         })
         self._write_state(state)
         self._event({
@@ -1661,6 +1817,7 @@ class AdaptiveCoordinateOptimizerV14:
             "direction": direction,
             "direction_label": direction,
             "step_fraction": step,
+            "screening_only": screening_only,
             "move_space": move.get("move_space", "relative"),
             "step_basis": move.get("step_basis", ""),
             "range_normalized": bool(move.get("range_normalized", False)),
@@ -1810,6 +1967,46 @@ class AdaptiveCoordinateOptimizerV14:
             ),
             **json_safe(diagnostics or {}),
         }
+
+        screening_only = as_bool(row.get("pending_screening_only"), False)
+        if screening_only:
+            score = None
+            if (
+                valid
+                and candidate is not None
+                and baseline is not None
+                and step is not None
+                and float(step) > 0.0
+            ):
+                score = abs(candidate - baseline) / max(float(step), 1e-30)
+
+            memory.at[idx, "coverage_tested"] = True
+            memory.at[idx, "coverage_sensitivity_score"] = score
+            memory.at[idx, "coverage_test_direction"] = direction
+            memory.at[idx, "coverage_test_objective"] = candidate
+            memory.at[idx, "pending_screening_only"] = False
+
+            # Screening does not alter the accepted state. Reset ordinary
+            # directional evidence so calibration starts cleanly afterwards.
+            memory.at[idx, "status"] = "unexplored"
+            memory.at[idx, "phase"] = "symmetric"
+            memory.at[idx, "direction_queue"] = "increase|decrease"
+            memory.at[idx, "tested_increase"] = False
+            memory.at[idx, "tested_decrease"] = False
+            memory.at[idx, "continuation_direction"] = ""
+
+            self._record_coverage_completion_if_needed(memory, state)
+            event.update(
+                {
+                    "action": "coverage_sensitivity_screen",
+                    "accepted": False,
+                    "decision": "screen_only",
+                    "rejection_reason": "coverage_screening_restore_baseline",
+                    "coverage_sensitivity_score": score,
+                    "restoration_required": True,
+                }
+            )
+            return event
 
         if meaningful:
             if self.step_controller is not None:

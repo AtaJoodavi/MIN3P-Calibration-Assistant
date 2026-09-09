@@ -1965,7 +1965,7 @@ class V14Workflow(V135Workflow):
             ),
             "safe_next_step": (
                 "Implement the missing V14 modules, rerun preflight, then use a "
-                "two-run --disable-gpt smoke test."
+                "two-run deterministic smoke test."
                 if missing_required_components or self.using_v13_5_optimizer_fallback
                 else "V14 validation is complete. Review the final release audit; do not run auto calibration without an explicit campaign decision."
             ),
@@ -2057,8 +2057,8 @@ class V14Workflow(V135Workflow):
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "MIN3P AI Pipeline V14 — adaptive directional calibration, "
-            "interaction-ready governance, audit trail, and advisory GPT supervision."
+            "MIN3P Calibration Assistant V14 — deterministic adaptive directional "
+            "calibration with audit trail and restartable state management."
         )
     )
     parser.add_argument(
@@ -2102,20 +2102,6 @@ def main() -> None:
         help="Retained for compatibility; V14 directional search evaluates one candidate per iteration.",
     )
     parser.add_argument(
-        "--disable-gpt",
-        "--skip-gpt",
-        dest="disable_gpt",
-        action="store_true",
-        help="Disable advisory GPT supervisor calls.",
-    )
-    parser.add_argument(
-        "--use-gpt",
-        dest="disable_gpt",
-        action="store_false",
-        help="Enable advisory GPT supervisor calls only after gpt_scientific_supervisor.py exists.",
-    )
-    parser.set_defaults(disable_gpt=True)
-    parser.add_argument(
         "--reset-campaign-start",
         action="store_true",
         help="Pass through to the inherited V13 campaign marker setup.",
@@ -2137,14 +2123,14 @@ def main() -> None:
     workflow = V14Workflow(reset_campaign_start=args.reset_campaign_start)
 
     if args.mode == "preflight":
-        workflow.preflight(disable_gpt=args.disable_gpt)
+        workflow.preflight(disable_gpt=True)
     elif args.mode == "auto":
         workflow.auto_v14(
             max_runs=args.max_runs,
             max_candidates=args.max_candidates,
             max_physical_runs=args.max_physical_runs,
             max_changes=args.max_changes,
-            disable_gpt=args.disable_gpt,
+            disable_gpt=True,
             allow_v13_5_fallback=args.allow_v13_5_fallback,
         )
     elif args.mode == "report":

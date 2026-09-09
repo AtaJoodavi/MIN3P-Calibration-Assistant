@@ -134,6 +134,28 @@ python .\verify_v14_4_4_initial_scales.py
 
 See `V14_4_4_AUTOMATIC_SEARCH_GUIDE.md` for the exact rule and fallback logic.
 
+## Coverage-first sensitivity screening
+
+When at least five parameters are active, V14 now performs an initial
+coverage-first screening phase before ordinary directional calibration. One
+local perturbation is evaluated for each active parameter against the same
+accepted baseline. Screening candidates are diagnostic only and are restored
+after evaluation, so their objective responses are directly comparable.
+
+The local screening score is
+
+```text
+|candidate TOTAL_SCORE - baseline TOTAL_SCORE| / fractional step
+```
+
+After all active parameters have been screened, ordinary calibration starts
+with the parameter having the largest finite screening score. The learned
+sensitivity then remains a deterministic ranking signal during subsequent
+search. Existing directional, rollback, bounds, checkpoint, and audit rules
+remain active.
+
+No extra command is required; this behavior is part of `--mode auto`.
+
 ## Run calibration
 
 ```powershell
