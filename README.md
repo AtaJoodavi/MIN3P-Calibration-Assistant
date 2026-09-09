@@ -6,7 +6,6 @@ The code is designed so that every tested parameter change is recorded and the c
 
 MIN3P-Calibration-Assistant was developed by Ata Joodavi at the Geological Survey of Finland (GTK).
 
-> A licensed MIN3P executable and the required thermodynamic/database files must be supplied separately by the user.
 > MIN3P is developed and maintained independently by the MIN3P development team. The included executable is redistributed for convenience under the applicable MIN3P license. MIN3P-Calibration-Assistant does not modify the MIN3P governing equations or numerical formulation.
 
 ## 1. Project structure
